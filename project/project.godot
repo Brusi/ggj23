@@ -10,11 +10,23 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "Carrot",
+"language": "GDScript",
+"path": "res://Carrot.gd"
+}, {
+"base": "Node2D",
+"class": "Game",
+"language": "GDScript",
+"path": "res://Game.gd"
+}, {
+"base": "Node2D",
 "class": "Rabbit",
 "language": "GDScript",
 "path": "res://Rabbit.gd"
 } ]
 _global_script_class_icons={
+"Carrot": "",
+"Game": "",
 "Rabbit": ""
 }
 
