@@ -4,13 +4,13 @@
 [ext_resource path="res://Carrot.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25, 50 )
+extents = Vector2( 15, 50 )
 
 [node name="Carrot" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="CarrotGraphics" type="Sprite" parent="."]
-scale = Vector2( 2.25, 2.80952 )
+scale = Vector2( 1.5, 2.5 )
 z_index = 1
 texture = ExtResource( 1 )
 
