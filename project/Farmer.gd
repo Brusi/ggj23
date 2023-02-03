@@ -6,7 +6,7 @@ const carrot_diff: = 42.0
 export var min_x: = 980
 export var max_x: = 1920
 export var speed: = 200.0
-var stabbing_margin = 20
+var stabbing_margin = 40
 
 enum State {
 	IDLE,
