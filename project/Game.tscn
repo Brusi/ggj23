@@ -124,10 +124,12 @@ texture = ExtResource( 9 )
 script = ExtResource( 10 )
 
 [node name="MusicIntro" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 11 )
 autoplay = true
 
 [node name="MusicLoop" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 12 )
 
 [connection signal="finished" from="MusicIntro" to="." method="_on_MusicIntro_finished"]
