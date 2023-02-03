@@ -1,7 +1,7 @@
 extends Sprite
 
 const SPEED = 200
-var duration = rand_range(0.8, 0.1)
+var duration = rand_range(0.5, 0.1)
 
 var vel:= Vector2.RIGHT.rotated(rand_range(-PI,PI)) * rand_range(SPEED / 3, SPEED)
 

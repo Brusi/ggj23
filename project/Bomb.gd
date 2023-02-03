@@ -3,7 +3,7 @@ extends Node2D
 signal exploded
 
 var t: = 1.0
-export var duration_sec = 2
+export var duration_sec = 20
 
 var done: = false
 var screenshake: = 0.0
@@ -12,6 +12,7 @@ func _ready():
 	init_curve()
 
 func init_curve():
+	$Path2D.curve.clear_points()
 	for point in $PathPoints.get_children():
 		($Path2D.curve as Curve2D).add_point(point.position)
 		
@@ -26,8 +27,9 @@ func _process(delta):
 		return
 
 	t -= delta / duration_sec
+	print(t)
 	t = max(t, 0)
-	$Path2D/PathFollow2D.unit_offset = t
+	($Path2D/PathFollow2D as PathFollow2D).unit_offset = t
 	if t <= 0:
 		explode()
 
@@ -50,6 +52,9 @@ func explode():
 	get_tree().paused = true
 	yield(get_tree().create_timer(0.2), "timeout")
 	get_tree().paused = false
+	
+	scale.x = 1.0
+	scale.y = 1.0
 	
 	screenshake = 30.0
 	for i in range(150):
