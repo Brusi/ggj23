@@ -21,7 +21,7 @@ func _ready():
 	get_node("/root/Game/LeftMask").clone_obj(self)
 
 func copy_state_to(new_obj):
-	pass
+	new_obj.get_node("CarrotGraphics").offset = $CarrotGraphics.offset
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
