@@ -20,12 +20,14 @@ func _physics_process(delta):
 		dir -= 1
 	position.x += speed * delta * dir
 	
-	if position.x < min_x:
+	if position.x < min_x - 21:
 		position.x += (max_x - min_x)
-	elif position.x > max_x:
+	elif position.x > max_x - 21:
 		position.x -= (max_x - min_x)
 	
 	if dir > 0:
 		$Sprite.flip_h = false
+		$Sprite/Clone.flip_h = false
 	elif dir < 0:
 		$Sprite.flip_h = true
+		$Sprite/Clone.flip_h = true

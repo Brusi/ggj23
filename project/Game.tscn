@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/ground_mask.png" type="Texture" id=4]
 [ext_resource path="res://Carrot.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game.gd" type="Script" id=6]
+[ext_resource path="res://CarrotContainer.gd" type="Script" id=6]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 6 )
@@ -23,20 +24,88 @@ position = Vector2( 1443, 444 )
 [node name="Rabbit" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1055, 716 )
 
-[node name="Carrot2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1115, 559 )
+[node name="CarrotContainer" type="Node2D" parent="."]
+script = ExtResource( 6 )
 
-[node name="Carrot3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1173, 559 )
+[node name="Carrot" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1060, 550 )
+scale = Vector2( 1, 1 )
 
-[node name="Carrot4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1228, 559 )
+[node name="Carrot2" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1102, 550 )
+scale = Vector2( 1, 1 )
 
-[node name="Carrot5" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1284, 559 )
+[node name="Carrot3" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1144, 550 )
+scale = Vector2( 1, 1 )
 
-[node name="Carrot6" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1336, 559 )
+[node name="Carrot4" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1186, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot5" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1228, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot6" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1270, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot7" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1312, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot8" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1354, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot9" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1396, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot10" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1438, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot11" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1480, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot12" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1522, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot13" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1564, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot14" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1606, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot15" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1648, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot16" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1690, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot17" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1732, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot18" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1774, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot19" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1816, 550 )
+scale = Vector2( 1, 1 )
+
+[node name="Carrot20" parent="CarrotContainer" instance=ExtResource( 5 )]
+position = Vector2( 1858, 550 )
+scale = Vector2( 1, 1 )
 
 [node name="GroundMask" type="Sprite" parent="."]
 position = Vector2( 1452, 570 )

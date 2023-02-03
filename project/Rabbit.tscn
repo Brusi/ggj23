@@ -18,3 +18,8 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
+
+[node name="Clone" type="Sprite" parent="Sprite"]
+position = Vector2( 940, 0 )
+texture = ExtResource( 2 )
+
