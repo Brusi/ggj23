@@ -25,6 +25,8 @@ var cooldown_bomb: = 0.0
 
 onready var game: Game = get_parent().get_parent()
 
+var decoy:Node2D
+
 func is_occupied():
 	return state == State.PREPARE or state == State.STAB or state == State.PULL
 

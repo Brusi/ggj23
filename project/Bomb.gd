@@ -11,7 +11,8 @@ var alive: = true
 var falling: = false
 var speed: = 0.0
 
-var intact: = true
+var decoy:Node2D
+
 var screenshake: = 0.0
 
 func _ready():
@@ -24,17 +25,8 @@ func init_curve():
 		($Path2D.curve as Curve2D).add_point(point.position)
 		
 func _process(delta):
-	if not intact:
-		for game in get_tree().get_nodes_in_group("game"):
-			if screenshake > 0.0:
-				game.position = Vector2.RIGHT.rotated(rand_range(-PI,PI)) * rand_range(0, screenshake)
-				screenshake *= 0.9
-			else:
-				game.position = Vector2.ZERO
-		return
-		
-	$Sprite.visible = falling and intact
-	$Decoy.visible = not falling and intact
+	$Sprite.visible = falling and alive
+	$Decoy.visible = not falling and alive
 
 	t -= delta / duration_sec
 	t = max(t, 0)
@@ -44,7 +36,8 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	if not intact:
+	if not alive:
+		queue_free()
 		return
 		
 	if falling:
@@ -60,36 +53,24 @@ func _physics_process(delta):
 		add_child(spark)
 
 func explode():
-	if not intact:
+	if not alive:
 		return
-	intact = false
+	alive = false
+	
+	var explosion: = preload("res://Explosion.tscn").instance()
+	explosion.global_position = global_position
+	
+	var explosion2: = preload("res://Explosion.tscn").instance()
+	explosion2.global_position = decoy.global_position
+	
+	get_parent().add_child(explosion)
+	get_parent().add_child(explosion2)
+	
 	$White.visible = true
 	$Sprite.visible = false
-	$Decoy.visible = false
-	$Path2D.queue_free()
-		
-	get_tree().paused = true
-	yield(get_tree().create_timer(0.2), "timeout")
-	get_tree().paused = false
 	
-	scale.x = 1.0
-	scale.y = 1.0
-	
-	screenshake = 30.0
-	for i in range(150):
-		var circle: = preload("res://Circle.tscn").instance()
-		circle.position += Vector2(rand_range(-20,20),rand_range(-40,40))
-		add_child(circle)
-	
-	$White.visible = false
-	
-	yield(get_tree().create_timer(1.0), "timeout")
-	
-	# Just in case.
-	for game in get_tree().get_nodes_in_group("game"):
-		game.position = Vector2.ZERO
-	alive = false
-	queue_free()
+	decoy.get_node("White").visible = true
+	decoy.get_node("Sprite").visible = false
 	
 func copy_state_to(dst):
 	(dst.get_node("Path2D/PathFollow2D") as PathFollow2D).unit_offset = t

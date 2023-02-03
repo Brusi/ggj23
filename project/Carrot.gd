@@ -15,6 +15,8 @@ var rot_speed_diff := 0.0
 
 var alive := true
 
+var decoy:Node2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game.carrots.append(self)

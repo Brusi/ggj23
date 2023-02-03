@@ -26,6 +26,8 @@ func _ready():
 
 func _pull_bomb():
 	for bomb in get_tree().get_nodes_in_group("bomb"):
+		if not bomb.alive:
+			continue
 		if abs(bomb.global_position.x - global_position.x) < 21:
 			bomb.falling = true
 			pulling_delay = 10.0
