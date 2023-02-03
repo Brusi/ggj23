@@ -19,7 +19,6 @@ var alive := true
 func _ready():
 	game.carrots.append(self)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if attached:
