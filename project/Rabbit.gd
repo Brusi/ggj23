@@ -10,11 +10,16 @@ export var pulling_time: = 2.5
 export var min_pull_time: = 0.3
 export var carrot_margin := 21
 var is_dead: bool = false
+var pulled_bomb := false
 
 var current_action = ""
 var pulling_delay = 0.0
 var min_active_pulling_time = 0.0
 var pulling := false
+
+# This is "object alive", not "player alive"
+var alive := true
+var decoy:Node2D
 
 const ACTIONS = ["rabbit_right", "rabbit_left", "rabbit_down"]
 
@@ -22,7 +27,15 @@ onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
 onready var game: Game = get_parent().get_parent()
 
 func _ready():
-	pass
+	get_node("/root/Game/LeftMask").clone_obj(self)
+
+func copy_state_to(new_obj):
+	for s in [[new_obj.get_node("Sprite") ,$Sprite],
+			  [new_obj.get_node("Sprite/Clone"), $Sprite/Clone]]:
+		s[0].flip_h = s[1].flip_h
+		s[0].flip_v = s[1].flip_v
+		s[0].offset = s[1].offset
+		s[0].visible = s[1].visible
 
 func _pull_bomb():
 	for bomb in get_tree().get_nodes_in_group("bomb"):
@@ -31,7 +44,11 @@ func _pull_bomb():
 		if abs(bomb.global_position.x - global_position.x) < 21:
 			bomb.falling = true
 			pulling_delay = 10.0
+			pulled_bomb = true
 			
+
+func is_dead_or_about_to() -> bool:
+	return pulled_bomb or is_dead
 
 func _pull_carrot(delta) -> bool:
 	var carrot = null
