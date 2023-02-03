@@ -2,10 +2,11 @@ extends Node2D
 
 class_name Game
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var splash: = false
+
 var carrots := []
+
+var ended: = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +17,9 @@ func _process(delta):
 		get_tree().reload_current_scene()
 		
 	print(Engine.get_frames_per_second())
+	
+func end():
+	ended = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

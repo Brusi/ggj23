@@ -45,6 +45,9 @@ func copy_state_to(new_obj):
 		s[0].visible = s[1].visible
 	
 func _physics_process(delta):
+	if game.ended:
+		return
+	
 	if Input.is_action_just_pressed("farmer_pitchfork"):
 		pitchfork_stab()
 	
@@ -114,7 +117,7 @@ func try_plant_bomb():
 	for carrot in game.carrots:
 		if !carrot.alive:
 			continue
-		if abs(carrot.global_position.x - target_x) < 10:
+		if abs(carrot.global_position.x - target_x) < 10 and carrot.attached:
 			return
 			
 	for bomb in bombs:

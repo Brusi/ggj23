@@ -43,7 +43,7 @@ func _pull_bomb():
 			continue
 		if abs(bomb.global_position.x - global_position.x) < 21:
 			bomb.falling = true
-			pulling_delay = 10.0
+			pulling_delay = 1.0
 			pulled_bomb = true
 			
 
@@ -74,12 +74,18 @@ func _pull_carrot(delta) -> bool:
 	
 
 func _physics_process(delta):
+	if game.ended:
+		return
+	
 	if not self.is_dead:
 		if pulling_delay >= delta:
 			pulling_delay -= delta
 		else:
 			delta -= pulling_delay
 			pulling_delay = 0.0
+			
+			if Input.is_action_just_pressed("rabbit_down"):
+				_pull_bomb()
 			
 			var next_action = ""
 			
@@ -122,8 +128,6 @@ func _physics_process(delta):
 				
 				if current_action == "rabbit_down":
 					var pulled_before = pulling
-					_pull_bomb()
-					
 					pulling = _pull_carrot(delta)
 					
 					if not pulled_before and pulling:
@@ -146,4 +150,12 @@ func die_by_bomb():
 func die():
 	self.is_dead = true
 	$Sprite.flip_v = true
-	
+	if game.splash:
+		yield(get_tree().create_timer(1.5), "timeout")
+		pulled_bomb
+		is_dead = false
+		pulling_delay = 0.0
+		$Sprite.flip_v = false
+	else:
+		game.end()
+

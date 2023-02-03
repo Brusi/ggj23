@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Carrot
 
+signal collected
+
 var attached := true
 var being_pulled_for = 0.0
 onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
