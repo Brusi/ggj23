@@ -14,6 +14,8 @@ var ended: = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$MusicIntro.seek(62)
+	$MusicIntro.play()
 	pass # Replace with function body.
 
 func _process(delta):
@@ -49,4 +51,4 @@ func collect_carrot():
 
 func _on_MusicIntro_finished():
 	$MusicIntro.stop()
-	$MusicLoop.stop()
+	$MusicLoop.play()
