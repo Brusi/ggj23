@@ -5,13 +5,15 @@ class_name Rabbit
 export var min_x: = 980
 export var max_x: = 1920
 export var speed: = 200.0
-export var after_pull_delay: = 1.0
+export var after_pull_delay: = 0.2
 export var pulling_time: = 2.5
+export var min_pull_time: = 0.3
 export var carrot_margin := 10
 var is_dead: bool = false
 
 var current_action = ""
 var pulling_delay = 0.0
+var min_active_pulling_time = 0.0
 var pulling := false
 
 const ACTIONS = ["rabbit_right", "rabbit_left", "rabbit_down"]
@@ -55,7 +57,11 @@ func _physics_process(delta):
 			
 			if current_action != "" and Input.is_action_pressed(current_action):
 				next_action = current_action
+			elif min_active_pulling_time >= delta and pulling:
+				min_active_pulling_time -= delta
+				next_action = "rabbit_down"
 			else:
+				min_active_pulling_time = 0
 				for possible_action in ACTIONS:
 					if Input.is_action_pressed(possible_action):
 						if next_action == "":
@@ -89,6 +95,9 @@ func _physics_process(delta):
 				if current_action == "rabbit_down":
 					var pulled_before = pulling
 					pulling = _pull_carrot(delta)
+					
+					if not pulled_before and pulling:
+						min_active_pulling_time = min_pull_time
 					
 					if pulled_before and not pulling:
 						current_action = ""
