@@ -1,7 +1,7 @@
 extends Node2D
 
 var carrot_action_margin = 10
-onready var rabbit = get_parent().get_node("Rabbit")
+onready var rabbit = get_parent().get_parent().get_node("Rabbit")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
