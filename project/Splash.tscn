@@ -47,9 +47,9 @@ margin_right = 840.0
 margin_bottom = 1021.0
 rect_pivot_offset = Vector2( 294, 74 )
 theme = SubResource( 2 )
-text = "[Left]/[Right] to move
-[Up] to pick up decoy
-[Down] to plant or attack"
+text = "[A]/[D] to Move
+[Down] to Attack
+[1]/[2]/[3] to Use Skills"
 align = 1
 valign = 1
 
