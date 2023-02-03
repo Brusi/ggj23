@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/bg.png" type="Texture" id=1]
 [ext_resource path="res://Rabbit.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://assets/upper_ground.png" type="Texture" id=9]
 [ext_resource path="res://UpperGround.gd" type="Script" id=10]
 [ext_resource path="res://assets/sound/music.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/carrot_counter.png" type="Texture" id=12]
+[ext_resource path="res://Theme.tres" type="Theme" id=13]
 
 [node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource( 6 )
@@ -125,3 +127,78 @@ script = ExtResource( 10 )
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 autoplay = true
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="counter_board" type="TextureRect" parent="GUI"]
+margin_left = 680.0
+margin_top = 8.0
+margin_right = 1192.0
+margin_bottom = 264.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 12 )
+
+[node name="counter_board2" type="TextureRect" parent="GUI"]
+margin_left = 1660.0
+margin_top = 8.0
+margin_right = 2172.0
+margin_bottom = 264.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 12 )
+
+[node name="farmer_counter" type="Label" parent="GUI"]
+margin_left = 781.0
+margin_top = 33.0
+margin_right = 834.0
+margin_bottom = 107.0
+theme = ExtResource( 13 )
+text = "15"
+align = 1
+
+[node name="rabbit_counter" type="Label" parent="GUI"]
+margin_left = 1738.0
+margin_top = 39.0
+margin_right = 1884.0
+margin_bottom = 113.0
+rect_scale = Vector2( 0.8, 0.8 )
+theme = ExtResource( 13 )
+text = "0 / 15"
+align = 1
+
+[node name="rabbit_wins" type="Control" parent="GUI"]
+visible = false
+
+[node name="Label" type="Label" parent="GUI/rabbit_wins"]
+margin_left = 1267.0
+margin_top = 237.0
+margin_right = 1611.0
+margin_bottom = 311.0
+theme = ExtResource( 13 )
+text = "You've won!"
+
+[node name="Label2" type="Label" parent="GUI/rabbit_wins"]
+margin_left = 267.0
+margin_top = 237.0
+margin_right = 627.0
+margin_bottom = 311.0
+theme = ExtResource( 13 )
+text = "You've lost..."
+
+[node name="farmer_wins" type="Control" parent="GUI"]
+visible = false
+
+[node name="Label" type="Label" parent="GUI/farmer_wins"]
+margin_left = 274.0
+margin_top = 237.0
+margin_right = 618.0
+margin_bottom = 311.0
+theme = ExtResource( 13 )
+text = "You've won!"
+
+[node name="Label2" type="Label" parent="GUI/farmer_wins"]
+margin_left = 1260.0
+margin_top = 237.0
+margin_right = 1620.0
+margin_bottom = 311.0
+theme = ExtResource( 13 )
+text = "You've lost..."

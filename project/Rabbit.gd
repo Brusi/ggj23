@@ -69,6 +69,7 @@ func _pull_carrot(delta) -> bool:
 	
 	if carrot.out >= 1:
 		carrot.attached = false
+		game.collect_carrot()
 	
 	return true
 	
@@ -157,5 +158,5 @@ func die():
 		pulling_delay = 0.0
 		$Sprite.flip_v = false
 	else:
-		game.end()
+		game.farmer_wins()
 
