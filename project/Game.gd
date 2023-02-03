@@ -19,6 +19,10 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
+	elif Input.is_action_just_pressed("ui_accept") and splash:
+		get_tree().change_scene("res://Game.tscn")
+	elif Input.is_action_just_pressed("ui_cancel"):
+		get_tree().change_scene("res://Splash.tscn")
 		
 	print(Engine.get_frames_per_second())
 	
@@ -43,6 +47,6 @@ func collect_carrot():
 	if collected_carrots >= 15:
 		rabbit_wins()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_MusicIntro_finished():
+	$MusicIntro.stop()
+	$MusicLoop.stop()

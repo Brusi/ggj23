@@ -28,6 +28,8 @@ onready var game: Game = get_parent().get_parent()
 
 func _ready():
 	get_node("/root/Game/LeftMask").clone_obj(self)
+	var init_x = rand_range(0.1, 0.4) + (randi() % 2) * 0.5
+	position.x = lerp(min_x, max_x, init_x)
 
 func copy_state_to(new_obj):
 	for s in [[new_obj.get_node("Sprite") ,$Sprite],
@@ -153,7 +155,7 @@ func die():
 	$Sprite.flip_v = true
 	if game.splash:
 		yield(get_tree().create_timer(1.5), "timeout")
-		pulled_bomb
+		pulled_bomb = false
 		is_dead = false
 		pulling_delay = 0.0
 		$Sprite.flip_v = false

@@ -35,6 +35,7 @@ func is_occupied():
 func _ready():
 	$Pitchfork.visible = false
 	get_node("/root/Game/LeftMask").clone_obj(self)
+	global_position.x = lerp(min_x, max_x, 0.5)
 
 func copy_state_to(new_obj):
 	for s in [[new_obj.get_node("Sprite") ,$Sprite],

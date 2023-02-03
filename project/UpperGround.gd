@@ -14,7 +14,6 @@ export var total_fade_out_time := 0.4
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if rabbit.is_dead_or_about_to():
@@ -23,3 +22,6 @@ func _process(delta):
 			current_fade_out_time += delta
 		else:
 			modulate.a = 0
+	else:
+		current_fade_out_time = 0.0
+		modulate.a = min(1.0, modulate.a + delta / 2)

@@ -10,9 +10,10 @@
 [ext_resource path="res://ScreenSplitter.gd" type="Script" id=8]
 [ext_resource path="res://assets/upper_ground.png" type="Texture" id=9]
 [ext_resource path="res://UpperGround.gd" type="Script" id=10]
-[ext_resource path="res://assets/sound/music.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/carrot_counter.png" type="Texture" id=12]
 [ext_resource path="res://Theme.tres" type="Theme" id=13]
+[ext_resource path="res://assets/sound/music_intro.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/music_loop.ogg" type="AudioStream" id=12]
 
 [node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource( 6 )
@@ -124,7 +125,8 @@ z_index = 20
 texture = ExtResource( 9 )
 script = ExtResource( 10 )
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="MusicIntro" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 11 )
 autoplay = true
 
@@ -202,3 +204,8 @@ margin_right = 1620.0
 margin_bottom = 311.0
 theme = ExtResource( 13 )
 text = "You've lost..."
+[node name="MusicLoop" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 12 )
+
+[connection signal="finished" from="MusicIntro" to="." method="_on_MusicIntro_finished"]
