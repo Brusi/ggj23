@@ -1,7 +1,7 @@
 extends Node2D
 
-export var min_x: = 0
-export var max_x: = 940
+export var min_x: = 980
+export var max_x: = 1920
 
 export var speed: = 200.0
 
