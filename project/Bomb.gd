@@ -50,6 +50,7 @@ func _physics_process(delta):
 			speed += 600 * delta
 			position.y += speed * delta
 		else:
+			rabbit.die_by_bomb()
 			explode()
 
 	var spark: = preload("res://Spark.tscn").instance()

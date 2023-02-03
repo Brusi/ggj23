@@ -9,7 +9,7 @@ _data = {
 "points": PoolVector2Array(  )
 }
 
-[node name="Bomb" type="Node2D"]
+[node name="Bomb" type="Node2D" groups=["bomb"]]
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 
@@ -55,7 +55,7 @@ position = Vector2( 4, -80 )
 [node name="Position2D10" type="Position2D" parent="PathPoints"]
 position = Vector2( 0, -84 )
 
-[node name="Position2D11" type="Position2D" parent="PathPoints" groups=["bomb"]]
+[node name="Position2D11" type="Position2D" parent="PathPoints"]
 position = Vector2( 2, -86 )
 
 [node name="White" type="Sprite" parent="."]
