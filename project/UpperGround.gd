@@ -23,3 +23,6 @@ func _process(delta):
 			current_fade_out_time += delta
 		else:
 			modulate.a = 0
+	else:
+		current_fade_out_time = 0.0
+		modulate.a = min(1.0, modulate.a + delta / 2)
