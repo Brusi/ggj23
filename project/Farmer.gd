@@ -6,7 +6,7 @@ const carrot_diff: = 42.0
 export var min_x: = 980
 export var max_x: = 1920
 export var speed: = 200.0
-var stabbing_margin = 20
+var stabbing_margin = 40
 
 enum State {
 	IDLE,
@@ -67,6 +67,9 @@ func _physics_process(delta):
 		$Sprite/Clone.flip_h = true
 	
 func pitchfork_stab():
+	if is_occupied():
+		return
+
 	state = State.PREPARE
 	
 	$Sprite.offset.y = -50
@@ -81,7 +84,7 @@ func pitchfork_stab():
 	if rabbit.position.x <= position.x + stabbing_margin and rabbit.position.x >= position.x - stabbing_margin:
 		rabbit.die()
 		
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 	
 	state = State.IDLE
 	

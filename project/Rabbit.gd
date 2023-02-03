@@ -54,7 +54,7 @@ func _pull_carrot(delta) -> bool:
 	return true
 	
 
-func _physics_process(delta):	
+func _physics_process(delta):
 	if not self.is_dead:
 		if pulling_delay >= delta:
 			pulling_delay -= delta
