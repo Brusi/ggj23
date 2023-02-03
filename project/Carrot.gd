@@ -23,7 +23,6 @@ func _ready():
 func copy_state_to(new_obj):
 	pass
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if attached:

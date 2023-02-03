@@ -10,7 +10,7 @@
 [ext_resource path="res://ScreenSplitter.gd" type="Script" id=8]
 [ext_resource path="res://assets/upper_ground.png" type="Texture" id=9]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource( 6 )
 
 [node name="Bg" type="Sprite" parent="."]

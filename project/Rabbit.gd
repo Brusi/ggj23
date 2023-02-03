@@ -8,7 +8,7 @@ export var speed: = 200.0
 export var after_pull_delay: = 0.2
 export var pulling_time: = 2.5
 export var min_pull_time: = 0.3
-export var carrot_margin := 10
+export var carrot_margin := 21
 var is_dead: bool = false
 
 var current_action = ""
@@ -24,6 +24,13 @@ onready var game: Game = get_parent().get_parent()
 func _ready():
 	pass
 
+func _pull_bomb():
+	for bomb in get_tree().get_nodes_in_group("bomb"):
+		if abs(bomb.global_position.x - global_position.x) < 21:
+			bomb.falling = true
+			pulling_delay = 10.0
+			
+
 func _pull_carrot(delta) -> bool:
 	var carrot = null
 	for possible_carrot in game.carrots:
@@ -33,6 +40,8 @@ func _pull_carrot(delta) -> bool:
 	
 	if not carrot:
 		return false
+		
+	global_position.x += (carrot.global_position.x - global_position.x) * 0.3
 	
 	carrot.being_pulled_for += delta
 	carrot.out += delta / pulling_time
@@ -94,6 +103,8 @@ func _physics_process(delta):
 				
 				if current_action == "rabbit_down":
 					var pulled_before = pulling
+					_pull_bomb()
+					
 					pulling = _pull_carrot(delta)
 					
 					if not pulled_before and pulling:
@@ -109,6 +120,9 @@ func _physics_process(delta):
 		global_position.x += (max_x - min_x)
 	elif global_position.x > max_x - 21:
 		global_position.x -= (max_x - min_x)
+
+func die_by_bomb():
+	die()
 
 func die():
 	self.is_dead = true
