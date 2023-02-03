@@ -61,21 +61,16 @@ func pitchfork_disabled():
 	
 func try_plant_bomb():
 	var target_i = round((global_position.x - leftmost_carrot) / carrot_diff)
-	print(target_i)
 	if target_i < 0 or target_i >= 20:
-		print("out of range")
 		return
 	var target_x = leftmost_carrot + target_i * carrot_diff
-	print(target_x)
 		
 	for carrot in game.carrots:
 		if !carrot.attached:
 			continue
 		if abs(carrot.global_position.x - target_x) < 10:
-			print("already a carrot")
 			return
 			
-	print("can plant!")
 	var bomb: = preload("res://Bomb.tscn").instance()
 	game.add_child(bomb)
 	bomb.global_position.x = target_x

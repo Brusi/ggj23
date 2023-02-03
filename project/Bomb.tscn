@@ -26,21 +26,36 @@ rotate = false
 [node name="PathPoints" type="Node2D" parent="."]
 
 [node name="Position2D" type="Position2D" parent="PathPoints"]
-position = Vector2( -4, -50 )
+position = Vector2( -2, -38 )
 
 [node name="Position2D2" type="Position2D" parent="PathPoints"]
-position = Vector2( -4, -60 )
+position = Vector2( -2, -46 )
 
 [node name="Position2D3" type="Position2D" parent="PathPoints"]
-position = Vector2( -6, -70 )
+position = Vector2( -4, -54 )
 
 [node name="Position2D4" type="Position2D" parent="PathPoints"]
-position = Vector2( 8, -76 )
+position = Vector2( -4, -62 )
 
 [node name="Position2D5" type="Position2D" parent="PathPoints"]
-position = Vector2( 0, -84 )
+position = Vector2( -6, -70 )
 
 [node name="Position2D6" type="Position2D" parent="PathPoints"]
+position = Vector2( 0, -72 )
+
+[node name="Position2D7" type="Position2D" parent="PathPoints"]
+position = Vector2( 6, -74 )
+
+[node name="Position2D8" type="Position2D" parent="PathPoints"]
+position = Vector2( 8, -78 )
+
+[node name="Position2D9" type="Position2D" parent="PathPoints"]
+position = Vector2( 4, -80 )
+
+[node name="Position2D10" type="Position2D" parent="PathPoints"]
+position = Vector2( 0, -84 )
+
+[node name="Position2D11" type="Position2D" parent="PathPoints" groups=["bomb"]]
 position = Vector2( 2, -86 )
 
 [node name="White" type="Sprite" parent="."]

@@ -5,6 +5,11 @@ signal exploded
 var t: = 1.0
 export var duration_sec = 20
 
+onready var rabbit: Rabbit = get_parent().get_node("RightMask/Rabbit")
+
+var falling: = false
+var speed: = 0.0
+
 var done: = false
 var screenshake: = 0.0
 
@@ -25,9 +30,11 @@ func _process(delta):
 			else:
 				game.position = Vector2.ZERO
 		return
+		
+	if falling:
+		return
 
 	t -= delta / duration_sec
-	print(t)
 	t = max(t, 0)
 	($Path2D/PathFollow2D as PathFollow2D).unit_offset = t
 	if t <= 0:
@@ -37,6 +44,14 @@ func _process(delta):
 func _physics_process(delta):
 	if done:
 		return
+		
+	if falling:
+		if position.y + 21 < rabbit.position.y + rabbit.shape.extents.y:
+			speed += 600 * delta
+			position.y += speed * delta
+		else:
+			explode()
+
 	var spark: = preload("res://Spark.tscn").instance()
 	spark.position = $Path2D/PathFollow2D.position
 	add_child(spark)
