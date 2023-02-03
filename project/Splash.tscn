@@ -47,3 +47,6 @@ BETWEEN THE PLAYERS ==>     <== BETWEEN THE PLAYERS
 Press [SPACE] To Start                  Press [SPACE] to Start"
 align = 1
 valign = 1
+
+[node name="GUI" parent="." index="9"]
+visible = false
