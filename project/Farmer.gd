@@ -67,6 +67,9 @@ func _physics_process(delta):
 		$Sprite/Clone.flip_h = true
 	
 func pitchfork_stab():
+	if is_occupied():
+		return
+
 	state = State.PREPARE
 	
 	$Sprite.offset.y = -50
@@ -81,7 +84,7 @@ func pitchfork_stab():
 	if rabbit.position.x <= position.x + stabbing_margin and rabbit.position.x >= position.x - stabbing_margin:
 		rabbit.die()
 		
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 	
 	state = State.IDLE
 	
