@@ -12,8 +12,10 @@ func _ready():
 	pass # Replace with function body.
 
 func clone_obj(obj):
-	var new_obj = obj.duplicate()
+	var new_obj:Node = obj.duplicate()
 	new_obj.script = null
+	for group in new_obj.get_groups():
+		new_obj.remove_from_group(group)
 	obj.decoy = new_obj
 	add_child(new_obj)
 	
