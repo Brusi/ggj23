@@ -1,7 +1,7 @@
 extends Node2D
 
-export var min_x: = 980
-export var max_x: = 1920
+export var min_x: = 0
+export var max_x: = 940
 
 export var speed: = 200.0
 
@@ -16,9 +16,9 @@ func _physics_process(delta):
 		dir -= 1
 	position.x += speed * delta * dir
 	
-	if position.x < min_x - 21:
+	if position.x < min_x + 21:
 		position.x += (max_x - min_x)
-	elif position.x > max_x - 21:
+	elif position.x > max_x + 21:
 		position.x -= (max_x - min_x)
 	
 	if dir > 0:
