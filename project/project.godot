@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Rabbit",
+"language": "GDScript",
+"path": "res://Rabbit.gd"
+} ]
+_global_script_class_icons={
+"Rabbit": ""
+}
+
 [application]
 
 config/name="Project"

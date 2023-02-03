@@ -1,9 +1,13 @@
 extends Node2D
 
+class_name Rabbit
+
 export var min_x: = 980
 export var max_x: = 1920
 
 export var speed: = 200.0
+
+onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
 
 func _ready():
 	pass # Replace with function body.
