@@ -25,6 +25,8 @@ func _process(delta):
 func end():
 	ended = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+
+func _on_MusicIntro_finished():
+	$MusicIntro.stop()
+	$MusicLoop.stop()
