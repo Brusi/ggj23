@@ -5,15 +5,17 @@ const carrot_diff: = 42.0
 
 export var min_x: = 980
 export var max_x: = 1920
-export var speed: = 200.0
-var stabbing_margin = 40
+export var speed: = 300.0
+const stabbing_margin = 40
+
+export var pitcfork_cooldown: = 1.5
 
 enum State {
 	IDLE,
 	WALKING,
 	PREPARE,
 	STAB,
-	PULL,
+	BOMB,
 }
 
 var state:int = State.IDLE
@@ -28,16 +30,20 @@ onready var game: Game = get_parent().get_parent()
 var decoy:Node2D
 
 func is_occupied():
-	return state == State.PREPARE or state == State.STAB or state == State.PULL
+	return state == State.PREPARE or state == State.STAB or state == State.BOMB
 
 func _ready():
 	$Pitchfork.visible = false
 	get_node("/root/Game/LeftMask").clone_obj(self)
 
 func copy_state_to(new_obj):
-	new_obj.get_node("Sprite").flip_h = $Sprite.flip_h
-	new_obj.get_node("Sprite/Clone") .flip_h = $Sprite/Clone.flip_h
-
+	for s in [[new_obj.get_node("Sprite") ,$Sprite],
+			  [new_obj.get_node("Sprite/Clone"), $Sprite/Clone],
+			  [new_obj.get_node("Pitchfork"), $Pitchfork]]:
+		s[0].flip_h = s[1].flip_h
+		s[0].offset = s[1].offset
+		s[0].visible = s[1].visible
+	
 func _physics_process(delta):
 	if Input.is_action_just_pressed("farmer_pitchfork"):
 		pitchfork_stab()
@@ -75,18 +81,20 @@ func pitchfork_stab():
 	state = State.PREPARE
 	
 	$Sprite.offset.y = -50
+	$Sprite/Clone.offset.y = -50
 	
 	yield(get_tree().create_timer(0.2), "timeout")
 	
 	state = State.STAB
 	
 	$Sprite.offset.y = 0
+	$Sprite/Clone.offset.y = 0
 	
 	$Pitchfork.visible = true
 	if rabbit.position.x <= position.x + stabbing_margin and rabbit.position.x >= position.x - stabbing_margin:
 		rabbit.die()
 		
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(pitcfork_cooldown), "timeout")
 	
 	state = State.IDLE
 	
@@ -94,6 +102,10 @@ func pitchfork_stab():
 
 	
 func try_plant_bomb():
+	var bombs: = get_tree().get_nodes_in_group("bomb") 
+	if not bombs.empty():
+		return
+	
 	var target_i = round((global_position.x - leftmost_carrot) / carrot_diff)
 	if target_i < 0 or target_i >= 20:
 		return
@@ -105,11 +117,26 @@ func try_plant_bomb():
 		if abs(carrot.global_position.x - target_x) < 10:
 			return
 			
+	for bomb in bombs:
+		if !bomb.alive:
+			continue
+		if abs(bomb.global_position.x - target_x) < 10:
+			return
+			
+	$Sprite.offset.y = -50
+	$Sprite/Clone.offset.y = -50
+	
+	yield(get_tree().create_timer(0.2), "timeout")
+	
+	state = State.BOMB
+	
+	$Sprite.offset.y = 0
+	$Sprite/Clone.offset.y = 0
+			
 	var bomb: = preload("res://Bomb.tscn").instance()
 	game.add_child(bomb)
 	bomb.global_position.x = target_x
 	bomb.global_position.y = 550
 	
-			
-	
+	state = State.IDLE
 	

@@ -27,13 +27,15 @@ func init_curve():
 func _process(delta):
 	$Sprite.visible = falling and alive
 	$Decoy.visible = not falling and alive
+	
+	if falling:
+		return
 
 	t -= delta / duration_sec
 	t = max(t, 0)
 	($Path2D/PathFollow2D as PathFollow2D).unit_offset = t
 	if t <= 0:
 		explode()
-
 
 func _physics_process(delta):
 	if not alive:
