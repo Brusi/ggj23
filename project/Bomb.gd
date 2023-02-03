@@ -18,6 +18,7 @@ var screenshake: = 0.0
 func _ready():
 	init_curve()
 	get_node("/root/Game/LeftMask").clone_obj(self)
+	$Decoy.modulate.a = 0
 
 func init_curve():
 	$Path2D.curve.clear_points()
@@ -25,10 +26,18 @@ func init_curve():
 		($Path2D.curve as Curve2D).add_point(point.position)
 		
 func _process(delta):
-	$Sprite.visible = falling and alive
-	$Decoy.visible = not falling and alive
+	if not falling and alive:
+		$Decoy.visible = true
+		$Decoy.modulate.a = min(1.0, $Decoy.modulate.a + delta / 2)
+		if $Decoy.modulate.a >= 1.0:
+			$Sprite.modulate.a = min(1.0, $Sprite.modulate.a - delta * 5)
 	
 	if falling:
+		if alive:
+			$Sprite.visible = alive
+			$Sprite.modulate.a = 1.0
+			$Decoy.visible = true
+			$Decoy.modulate.a = max(0.0, $Decoy.modulate.a - delta * 5)
 		return
 
 	t -= delta / duration_sec
