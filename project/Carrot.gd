@@ -18,6 +18,10 @@ var alive := true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game.carrots.append(self)
+	get_node("/root/Game/LeftMask").clone_obj(self)
+
+func copy_state_to(new_obj):
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

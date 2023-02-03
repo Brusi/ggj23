@@ -19,6 +19,7 @@ enum State {
 var state:int = State.IDLE
 
 onready var rabbit = get_node("/root/Game/RightMask/Rabbit")
+var alive = true
 
 var cooldown_bomb: = 0.0
 
@@ -29,6 +30,11 @@ func is_occupied():
 
 func _ready():
 	$Pitchfork.visible = false
+	get_node("/root/Game/LeftMask").clone_obj(self)
+
+func copy_state_to(new_obj):
+	new_obj.get_node("Sprite").flip_h = $Sprite.flip_h
+	new_obj.get_node("Sprite/Clone") .flip_h = $Sprite/Clone.flip_h
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("farmer_pitchfork"):
