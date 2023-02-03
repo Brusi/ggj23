@@ -18,11 +18,18 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Farmer" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1002, 444 )
+[node name="RightMask" type="Control" parent="."]
+margin_left = 985.0
+margin_top = 2.0
+margin_right = 1935.0
+margin_bottom = 1082.0
+rect_clip_content = true
 
-[node name="Rabbit" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1044, 716 )
+[node name="Rabbit" parent="RightMask" instance=ExtResource( 2 )]
+position = Vector2( 59, 714 )
+
+[node name="Farmer" parent="RightMask" instance=ExtResource( 3 )]
+position = Vector2( 17, 442 )
 
 [node name="CarrotContainer" type="Node2D" parent="."]
 position = Vector2( 1086, 0 )

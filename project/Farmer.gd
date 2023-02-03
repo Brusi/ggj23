@@ -5,7 +5,7 @@ export var max_x: = 1920
 export var speed: = 200.0
 var stabbing_margin = 20
 var is_stabbing: bool = false
-onready var rabbit = get_node("/root/Game/Rabbit")
+onready var rabbit = get_node("/root/Game/RightMask/Rabbit")
 
 func _ready():
 	$Pitchfork.visible = false
@@ -26,10 +26,10 @@ func _physics_process(delta):
 	if not self.is_stabbing:
 		position.x += speed * delta * dir
 	
-	if position.x < min_x + 21:
-		position.x += (max_x - min_x)
-	elif position.x > max_x + 21:
-		position.x -= (max_x - min_x)
+	if global_position.x < min_x + 21:
+		global_position.x += (max_x - min_x)
+	elif global_position.x > max_x + 21:
+		global_position.x -= (max_x - min_x)
 	
 	if dir > 0:
 		$Sprite.flip_h = false

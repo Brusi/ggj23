@@ -5,7 +5,7 @@ class_name Carrot
 var attached := true
 var being_pulled_for = 0.0
 onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
-onready var rabbit: Rabbit = get_parent().get_parent().get_node("Rabbit")
+onready var rabbit: Rabbit = get_parent().get_parent().get_node("RightMask/Rabbit")
 onready var game: Game = get_parent().get_parent()
 var out := 0.0
 var speed := 0.0

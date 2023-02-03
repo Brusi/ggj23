@@ -19,7 +19,7 @@ var pulling := false
 const ACTIONS = ["rabbit_right", "rabbit_left", "rabbit_down"]
 
 onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
-onready var game: Game = get_parent()
+onready var game: Game = get_parent().get_parent()
 
 func _ready():
 	pass
@@ -105,10 +105,10 @@ func _physics_process(delta):
 				else:
 					pulling = false
 	
-	if position.x < min_x - 21:
-		position.x += (max_x - min_x)
-	elif position.x > max_x - 21:
-		position.x -= (max_x - min_x)
+	if global_position.x < min_x - 21:
+		global_position.x += (max_x - min_x)
+	elif global_position.x > max_x - 21:
+		global_position.x -= (max_x - min_x)
 
 func die():
 	self.is_dead = true
