@@ -11,5 +11,5 @@ dest_files=[ "res://.import/farmer_step_3.ogg-ae96dd99c8a19e8649f1d122c8fcaf5a.o
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

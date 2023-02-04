@@ -11,5 +11,5 @@ dest_files=[ "res://.import/rabbit_step_3.ogg-71cb0eef7c8d5f3250a9c0fc9c7cbb0a.o
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

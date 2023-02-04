@@ -11,5 +11,5 @@ dest_files=[ "res://.import/grunt_2.ogg-61198d1481cdcdc436cb689e80d5cf11.oggstr"
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
