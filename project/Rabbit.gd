@@ -5,7 +5,7 @@ class_name Rabbit
 export var min_x: = 980
 export var max_x: = 1920
 export var speed: = 200.0
-export var after_pull_delay: = 0.2
+export var after_pull_delay: = 0.1
 export var pulling_time: = 2.5
 export var min_pull_time: = 0.3
 export var carrot_margin := 21

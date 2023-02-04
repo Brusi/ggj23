@@ -8,6 +8,7 @@ export var max_x: = 1920
 export var speed: = 300.0
 const stabbing_margin = 40
 
+export var pitcfork_miss_sound_delay: = 0.3
 export var pitcfork_cooldown: = 1.5
 
 enum State {
@@ -44,17 +45,17 @@ func play_step_sound():
 	can_play_step = true
 
 func _ready():
-	$Pitchfork.visible = false
+	$Sprite.play("default")
 	get_node("/root/Game/LeftMask").clone_obj(self)
 	global_position.x = lerp(min_x, max_x, 0.5)
 
 func copy_state_to(new_obj):
 	for s in [[new_obj.get_node("Sprite") ,$Sprite],
-			  [new_obj.get_node("Sprite/Clone"), $Sprite/Clone],
-			  [new_obj.get_node("Pitchfork"), $Pitchfork]]:
+			  [new_obj.get_node("Sprite/Clone"), $Sprite/Clone]]:
 		s[0].flip_h = s[1].flip_h
 		s[0].offset = s[1].offset
 		s[0].visible = s[1].visible
+		(s[0] as AnimatedSprite).play((s[1] as AnimatedSprite).animation)
 	
 func _physics_process(delta):
 	if game.ended:
@@ -70,7 +71,14 @@ func _physics_process(delta):
 		dir -= 1
 		
 	if dir != 0:
+		if !is_occupied():
+			$Sprite.play("walk")
+			$Sprite/Clone.play("walk")
 		play_step_sound()
+	elif state == State.IDLE:
+		if !is_occupied():
+			$Sprite.play("default")
+			$Sprite/Clone.play("default")
 		
 	if Input.is_action_just_pressed("farmer_action_1"):
 		try_plant_bomb()
@@ -85,12 +93,13 @@ func _physics_process(delta):
 	elif global_position.x > max_x + 21:
 		global_position.x -= (max_x - min_x)
 	
-	if dir > 0:
-		$Sprite.flip_h = false
-		$Sprite/Clone.flip_h = false
-	elif dir < 0:
-		$Sprite.flip_h = true
-		$Sprite/Clone.flip_h = true
+	if !is_occupied():
+		if dir > 0:
+			$Sprite.flip_h = true
+			$Sprite/Clone.flip_h = true
+		elif dir < 0:
+			$Sprite.flip_h = false
+			$Sprite/Clone.flip_h = false
 	
 func pitchfork_stab():
 	if is_occupied():
@@ -98,27 +107,30 @@ func pitchfork_stab():
 
 	state = State.PREPARE
 	
-	$Sprite.offset.y = -50
-	$Sprite/Clone.offset.y = -50
+	$Sprite.play("stab_one")
+	$Sprite/Clone.play("stab_one")
 	
 	yield(get_tree().create_timer(0.2), "timeout")
 	
 	state = State.STAB
 	$Stab.get_child(randi() % $Stab.get_child_count()).play()
 	
-	$Sprite.offset.y = 0
-	$Sprite/Clone.offset.y = 0
+	$Sprite.play("stab_two")
+	$Sprite/Clone.play("stab_two")
 	
-	$Pitchfork.visible = true
+	var cooldown = pitcfork_cooldown
+	
 	if rabbit.position.x <= position.x + stabbing_margin and rabbit.position.x >= position.x - stabbing_margin:
 		rabbit.die()
+	else:
+		cooldown -= pitcfork_miss_sound_delay
+		yield(get_tree().create_timer(pitcfork_miss_sound_delay), "timeout")
+		$Grunt.get_child(randi() % $Grunt.get_child_count()).play()
 		
-	yield(get_tree().create_timer(pitcfork_cooldown), "timeout")
+	yield(get_tree().create_timer(cooldown), "timeout")
 	
 	state = State.IDLE
-	
-	$Pitchfork.visible = false
-
+	$Sprite.play("default")
 	
 func try_plant_bomb():
 	var bombs: = get_tree().get_nodes_in_group("bomb") 
@@ -142,20 +154,20 @@ func try_plant_bomb():
 		if abs(bomb.global_position.x - target_x) < 10:
 			return
 			
-	$Sprite.offset.y = -50
-	$Sprite/Clone.offset.y = -50
-	
-	yield(get_tree().create_timer(0.2), "timeout")
-	
 	state = State.BOMB
+	$Sprite.play("plant")
+	$Sprite/Clone.play("plant")
 	
-	$Sprite.offset.y = 0
-	$Sprite/Clone.offset.y = 0
+	yield(get_tree().create_timer(0.4), "timeout")
+	
 			
 	var bomb: = preload("res://Bomb.tscn").instance()
 	game.add_child(bomb)
 	bomb.global_position.x = target_x
 	bomb.global_position.y = 550
+
+	$Sprite.play("default")
+	$Sprite/Clone.play("default")
 	
 	state = State.IDLE
 	
