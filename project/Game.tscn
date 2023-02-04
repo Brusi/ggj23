@@ -177,38 +177,46 @@ align = 1
 visible = false
 
 [node name="Label" type="Label" parent="GUI/rabbit_wins"]
-margin_left = 1267.0
+margin_left = 1116.0
 margin_top = 237.0
-margin_right = 1611.0
-margin_bottom = 311.0
+margin_right = 1796.0
+margin_bottom = 388.0
 theme = ExtResource( 13 )
-text = "You've won!"
+text = "You've won!
+Press [SPACE] to restart"
+align = 1
 
 [node name="Label2" type="Label" parent="GUI/rabbit_wins"]
-margin_left = 267.0
+margin_left = 146.0
 margin_top = 237.0
-margin_right = 627.0
-margin_bottom = 311.0
+margin_right = 826.0
+margin_bottom = 388.0
 theme = ExtResource( 13 )
-text = "You've lost..."
+text = "You've lost...
+Press [SPACE] to restart"
+align = 1
 
 [node name="farmer_wins" type="Control" parent="GUI"]
 visible = false
 
 [node name="Label" type="Label" parent="GUI/farmer_wins"]
-margin_left = 274.0
+margin_left = 143.0
 margin_top = 237.0
-margin_right = 618.0
-margin_bottom = 311.0
+margin_right = 823.0
+margin_bottom = 388.0
 theme = ExtResource( 13 )
-text = "You've won!"
+text = "You've won!
+Press [SPACE] to restart"
+align = 1
 
 [node name="Label2" type="Label" parent="GUI/farmer_wins"]
-margin_left = 1260.0
+margin_left = 1111.0
 margin_top = 237.0
-margin_right = 1620.0
-margin_bottom = 311.0
+margin_right = 1791.0
+margin_bottom = 388.0
 theme = ExtResource( 13 )
-text = "You've lost..."
+text = "You've lost...
+Press [SPACE] to restart"
+align = 1
 
 [connection signal="finished" from="MusicIntro" to="." method="_on_MusicIntro_finished"]
