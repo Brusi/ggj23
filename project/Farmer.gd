@@ -70,7 +70,14 @@ func _physics_process(delta):
 		dir -= 1
 		
 	if dir != 0:
+		if !is_occupied():
+			$Sprite.play("walk")
+			$Sprite/Clone.play("walk")
 		play_step_sound()
+	elif state == State.IDLE:
+		if !is_occupied():
+			$Sprite.play("default")
+			$Sprite/Clone.play("default")
 		
 	if Input.is_action_just_pressed("farmer_action_1"):
 		try_plant_bomb()
@@ -85,12 +92,13 @@ func _physics_process(delta):
 	elif global_position.x > max_x + 21:
 		global_position.x -= (max_x - min_x)
 	
-	if dir > 0:
-		$Sprite.flip_h = false
-		$Sprite/Clone.flip_h = false
-	elif dir < 0:
-		$Sprite.flip_h = true
-		$Sprite/Clone.flip_h = true
+	if !is_occupied():
+		if dir > 0:
+			$Sprite.flip_h = true
+			$Sprite/Clone.flip_h = true
+		elif dir < 0:
+			$Sprite.flip_h = false
+			$Sprite/Clone.flip_h = false
 	
 func pitchfork_stab():
 	if is_occupied():
