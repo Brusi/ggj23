@@ -30,13 +30,14 @@ margin_bottom = 1082.0
 rect_clip_content = true
 
 [node name="Rabbit" parent="RightMask" instance=ExtResource( 2 )]
-position = Vector2( 850, 635 )
+position = Vector2( 850, 630 )
 
 [node name="Farmer" parent="RightMask" instance=ExtResource( 3 )]
 position = Vector2( 17, 449.962 )
 
 [node name="LeftMask" type="Control" parent="."]
-margin_right = 940.0
+margin_left = 2.0
+margin_right = 932.0
 margin_bottom = 1080.0
 rect_clip_content = true
 script = ExtResource( 8 )
@@ -106,7 +107,7 @@ position = Vector2( 792.12, 550 )
 position = Vector2( 838.46, 550 )
 
 [node name="UpperGround" type="Sprite" parent="."]
-position = Vector2( 467, 848 )
+position = Vector2( 466, 848 )
 z_index = 20
 texture = ExtResource( 4 )
 script = ExtResource( 10 )
