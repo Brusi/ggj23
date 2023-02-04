@@ -6,6 +6,9 @@
 [node name="Game" instance=ExtResource( 2 )]
 splash = true
 
+[node name="GUI" parent="." index="7"]
+visible = false
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="8"]
 
 [node name="Label" type="Label" parent="CanvasLayer" index="0"]
@@ -47,6 +50,3 @@ BETWEEN THE PLAYERS ==>     <== BETWEEN THE PLAYERS
 Press [SPACE] To Start                  Press [SPACE] to Start"
 align = 1
 valign = 1
-
-[node name="GUI" parent="." index="10"]
-visible = false

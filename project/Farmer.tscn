@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/farmer_stab.png" type="Texture" id=1]
 [ext_resource path="res://Farmer.gd" type="Script" id=2]
@@ -13,7 +13,9 @@
 [ext_resource path="res://assets/sound/farmer_step_3.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/sound/farmer_step_5.ogg" type="AudioStream" id=12]
 [ext_resource path="res://assets/farmer_bomber.png" type="Texture" id=13]
-[ext_resource path="res://assets/sound/bomb_plant.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/grunt_2.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/grunt_1.ogg" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/bomb_plant.ogg" type="AudioStream" id=16]
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -107,8 +109,14 @@ audio_stream = ExtResource( 10 )
 [sub_resource type="AudioStreamRandomPitch" id=8]
 audio_stream = ExtResource( 12 )
 
-[sub_resource type="AudioStreamRandomPitch" id=19]
+[sub_resource type="AudioStreamRandomPitch" id=20]
+audio_stream = ExtResource( 15 )
+
+[sub_resource type="AudioStreamRandomPitch" id=21]
 audio_stream = ExtResource( 14 )
+
+[sub_resource type="AudioStreamRandomPitch" id=19]
+audio_stream = ExtResource( 16 )
 
 [node name="Farmer" type="Node2D"]
 script = ExtResource( 2 )
@@ -152,6 +160,14 @@ stream = SubResource( 7 )
 
 [node name="Step5" type="AudioStreamPlayer" parent="Steps"]
 stream = SubResource( 8 )
+
+[node name="Grunt" type="Node" parent="."]
+
+[node name="Grunt1" type="AudioStreamPlayer" parent="Grunt"]
+stream = SubResource( 20 )
+
+[node name="Grunt2" type="AudioStreamPlayer" parent="Grunt"]
+stream = SubResource( 21 )
 
 [node name="Plant" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 19 )
