@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/farmer_step_2.ogg-781120c24b933fcb60fd9a7dcf337d0b.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/farmer_step_2.ogg"
+dest_files=[ "res://.import/farmer_step_2.ogg-781120c24b933fcb60fd9a7dcf337d0b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

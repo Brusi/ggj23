@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rabbit_step_3.ogg-71cb0eef7c8d5f3250a9c0fc9c7cbb0a.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/rabbit_step_3.ogg"
+dest_files=[ "res://.import/rabbit_step_3.ogg-71cb0eef7c8d5f3250a9c0fc9c7cbb0a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
