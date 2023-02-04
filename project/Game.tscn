@@ -17,7 +17,6 @@
 
 [node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource( 6 )
-music = false
 
 [node name="Bg" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
