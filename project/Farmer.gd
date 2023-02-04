@@ -8,6 +8,7 @@ export var max_x: = 1920
 export var speed: = 300.0
 const stabbing_margin = 40
 
+export var pitcfork_miss_sound_delay: = 0.3
 export var pitcfork_cooldown: = 1.5
 
 enum State {
@@ -117,10 +118,16 @@ func pitchfork_stab():
 	$Sprite.play("stab_two")
 	$Sprite/Clone.play("stab_two")
 	
+	var cooldown = pitcfork_cooldown
+	
 	if rabbit.position.x <= position.x + stabbing_margin and rabbit.position.x >= position.x - stabbing_margin:
 		rabbit.die()
+	else:
+		cooldown -= pitcfork_miss_sound_delay
+		yield(get_tree().create_timer(pitcfork_miss_sound_delay), "timeout")
+		$Grunt.get_child(randi() % $Grunt.get_child_count()).play()
 		
-	yield(get_tree().create_timer(pitcfork_cooldown), "timeout")
+	yield(get_tree().create_timer(cooldown), "timeout")
 	
 	state = State.IDLE
 	$Sprite.play("default")

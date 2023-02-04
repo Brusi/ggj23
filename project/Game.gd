@@ -27,8 +27,10 @@ func _process(delta):
 		get_tree().reload_current_scene()
 	elif Input.is_action_just_pressed("ui_accept") and splash:
 		get_tree().change_scene("res://Game.tscn")
-	elif Input.is_action_just_pressed("ui_cancel"):
+	elif Input.is_action_just_pressed("ui_cancel") and not splash:
 		get_tree().change_scene("res://Splash.tscn")
+	elif Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
 		
 	print(Engine.get_frames_per_second())
 	
