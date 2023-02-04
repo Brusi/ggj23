@@ -154,20 +154,20 @@ func try_plant_bomb():
 		if abs(bomb.global_position.x - target_x) < 10:
 			return
 			
-	$Sprite.offset.y = -50
-	$Sprite/Clone.offset.y = -50
-	
-	yield(get_tree().create_timer(0.2), "timeout")
-	
 	state = State.BOMB
+	$Sprite.play("plant")
+	$Sprite/Clone.play("plant")
 	
-	$Sprite.offset.y = 0
-	$Sprite/Clone.offset.y = 0
+	yield(get_tree().create_timer(0.4), "timeout")
+	
 			
 	var bomb: = preload("res://Bomb.tscn").instance()
 	game.add_child(bomb)
 	bomb.global_position.x = target_x
 	bomb.global_position.y = 550
+
+	$Sprite.play("default")
+	$Sprite/Clone.play("default")
 	
 	state = State.IDLE
 	

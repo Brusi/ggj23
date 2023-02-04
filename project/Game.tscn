@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/bg.png" type="Texture" id=1]
 [ext_resource path="res://Rabbit.tscn" type="PackedScene" id=2]
@@ -10,8 +10,6 @@
 [ext_resource path="res://ScreenSplitter.gd" type="Script" id=8]
 [ext_resource path="res://assets/upper_ground.png" type="Texture" id=9]
 [ext_resource path="res://UpperGround.gd" type="Script" id=10]
-[ext_resource path="res://assets/sound/music_intro.ogg" type="AudioStream" id=11]
-[ext_resource path="res://assets/sound/music_loop.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Theme.tres" type="Theme" id=13]
 [ext_resource path="res://assets/carrot_counter.png" type="Texture" id=14]
 
@@ -126,16 +124,6 @@ z_index = 20
 texture = ExtResource( 9 )
 script = ExtResource( 10 )
 
-[node name="MusicIntro" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 11 )
-volume_db = -5.0
-
-[node name="MusicLoop" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 12 )
-volume_db = -5.0
-
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="counter_board" type="TextureRect" parent="GUI"]
@@ -218,5 +206,3 @@ theme = ExtResource( 13 )
 text = "You've lost...
 Press [SPACE] to restart"
 align = 1
-
-[connection signal="finished" from="MusicIntro" to="." method="_on_MusicIntro_finished"]
