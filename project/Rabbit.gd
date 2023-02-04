@@ -133,8 +133,8 @@ func _physics_process(delta):
 					
 				if dir != 0:
 					pass
-					#$Sprite.play("run")
-					#$Sprite/Clone.play("run")
+					$Sprite.play("run")
+					$Sprite/Clone.play("run")
 				else:
 					$Sprite.play("idle")
 					$Sprite/Clone.play("idle")
