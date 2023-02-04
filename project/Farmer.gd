@@ -44,17 +44,17 @@ func play_step_sound():
 	can_play_step = true
 
 func _ready():
-	$Pitchfork.visible = false
+	$Sprite.play("default")
 	get_node("/root/Game/LeftMask").clone_obj(self)
 	global_position.x = lerp(min_x, max_x, 0.5)
 
 func copy_state_to(new_obj):
 	for s in [[new_obj.get_node("Sprite") ,$Sprite],
-			  [new_obj.get_node("Sprite/Clone"), $Sprite/Clone],
-			  [new_obj.get_node("Pitchfork"), $Pitchfork]]:
+			  [new_obj.get_node("Sprite/Clone"), $Sprite/Clone]]:
 		s[0].flip_h = s[1].flip_h
 		s[0].offset = s[1].offset
 		s[0].visible = s[1].visible
+		(s[0] as AnimatedSprite).play((s[1] as AnimatedSprite).animation)
 	
 func _physics_process(delta):
 	if game.ended:
@@ -98,27 +98,24 @@ func pitchfork_stab():
 
 	state = State.PREPARE
 	
-	$Sprite.offset.y = -50
-	$Sprite/Clone.offset.y = -50
+	$Sprite.play("stab_one")
+	$Sprite/Clone.play("stab_one")
 	
 	yield(get_tree().create_timer(0.2), "timeout")
 	
 	state = State.STAB
 	$Stab.get_child(randi() % $Stab.get_child_count()).play()
 	
-	$Sprite.offset.y = 0
-	$Sprite/Clone.offset.y = 0
+	$Sprite.play("stab_two")
+	$Sprite/Clone.play("stab_two")
 	
-	$Pitchfork.visible = true
 	if rabbit.position.x <= position.x + stabbing_margin and rabbit.position.x >= position.x - stabbing_margin:
 		rabbit.die()
 		
 	yield(get_tree().create_timer(pitcfork_cooldown), "timeout")
 	
 	state = State.IDLE
-	
-	$Pitchfork.visible = false
-
+	$Sprite.play("default")
 	
 func try_plant_bomb():
 	var bombs: = get_tree().get_nodes_in_group("bomb") 
