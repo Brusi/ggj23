@@ -165,6 +165,7 @@ func die_by_bomb():
 func die():
 	self.is_dead = true
 	$Sprite.flip_v = true
+	$Die.play()
 	if game.splash:
 		yield(get_tree().create_timer(1.5), "timeout")
 		pulled_bomb = false

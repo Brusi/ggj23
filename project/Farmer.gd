@@ -150,6 +150,7 @@ func try_plant_bomb():
 	state = State.BOMB
 	$Sprite.play("plant")
 	$Sprite/Clone.play("plant")
+	$Plant.play()
 	
 	yield(get_tree().create_timer(0.4), "timeout")
 	
