@@ -36,6 +36,10 @@ config/name="Project"
 run/main_scene="res://Splash.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+MusicScene="*res://MusicScene.tscn"
+
 [display]
 
 window/size/width=1920
