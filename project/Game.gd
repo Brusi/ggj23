@@ -3,6 +3,9 @@ extends Node2D
 class_name Game
 
 export var splash: = false
+export var music: = true
+
+
 onready var farmer_counter = $GUI/farmer_counter
 onready var rabbit_counter = $GUI/rabbit_counter
 
@@ -14,8 +17,9 @@ var ended: = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$MusicIntro.seek(62)
-	$MusicIntro.play()
+	if music:
+		$MusicIntro.seek(62)
+		$MusicIntro.play()
 	pass # Replace with function body.
 
 func _process(delta):

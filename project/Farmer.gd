@@ -90,6 +90,7 @@ func pitchfork_stab():
 	yield(get_tree().create_timer(0.2), "timeout")
 	
 	state = State.STAB
+	$Stab.get_child(randi() % $Stab.get_child_count()).play()
 	
 	$Sprite.offset.y = 0
 	$Sprite/Clone.offset.y = 0

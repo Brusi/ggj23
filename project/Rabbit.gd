@@ -21,6 +21,8 @@ var pulling := false
 var alive := true
 var decoy:Node2D
 
+var can_play_step: = true
+
 const ACTIONS = ["rabbit_right", "rabbit_left", "rabbit_down"]
 
 onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
@@ -75,6 +77,14 @@ func _pull_carrot(delta) -> bool:
 	
 	return true
 	
+func play_step_sound():
+	if not can_play_step:
+		return
+		
+	can_play_step = false
+	$Steps.get_child(randi() % $Steps.get_child_count()).play()
+	yield(get_tree().create_timer(0.1), "timeout")
+	can_play_step = true
 
 func _physics_process(delta):
 	if game.ended:
@@ -125,9 +135,11 @@ func _physics_process(delta):
 				if dir > 0:
 					$Sprite.flip_h = false
 					$Sprite/Clone.flip_h = false
+					play_step_sound()
 				elif dir < 0:
 					$Sprite.flip_h = true
 					$Sprite/Clone.flip_h = true
+					play_step_sound()
 				
 				if current_action == "rabbit_down":
 					var pulled_before = pulling
