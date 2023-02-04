@@ -56,7 +56,7 @@ func _physics_process(delta):
 		rotation += rot_speed * delta
 	elif alive:
 		$PullSound.stop()
-		if position.y + shape.extents.y < rabbit.position.y + rabbit.shape.extents.y:
+		if global_position.y + shape.extents.y < rabbit.global_position.y + rabbit.shape.extents.y:
 			speed += 10
 			position.y += speed * delta
 		else:

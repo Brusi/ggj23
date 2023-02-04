@@ -6,10 +6,13 @@
 [node name="Game" instance=ExtResource( 2 )]
 splash = true
 
-[node name="GUI" parent="." index="7"]
+[node name="Carrot20" parent="CarrotContainer" index="19"]
+position = Vector2( 756, 550 )
+
+[node name="GUI" parent="." index="5"]
 visible = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="8"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="6"]
 
 [node name="Label" type="Label" parent="CanvasLayer" index="0"]
 margin_left = 990.0

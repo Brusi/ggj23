@@ -1,7 +1,7 @@
 extends Node2D
 
-const leftmost_carrot: = 1044.0
-const carrot_diff: = 42.0
+const leftmost_carrot: = 1060.0
+const carrot_diff: = 46.4
 
 export var min_x: = 980
 export var max_x: = 1920
@@ -165,7 +165,7 @@ func try_plant_bomb():
 	var bomb: = preload("res://Bomb.tscn").instance()
 	game.add_child(bomb)
 	bomb.global_position.x = target_x
-	bomb.global_position.y = 550
+	bomb.global_position.y = 541
 
 	$Sprite.play("default")
 	$Sprite/Clone.play("default")

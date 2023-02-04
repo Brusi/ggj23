@@ -23,7 +23,7 @@ func clone_obj(obj):
 	cloned_objects.append([new_obj, obj])
 
 func _copy_state(src, dst):
-	dst.global_position = src.global_position - Vector2(985, -63)
+	dst.global_position = src.global_position - Vector2(988, -105)
 	dst.rotation = src.rotation
 	dst.modulate = src.modulate
 	dst.scale = src.scale
