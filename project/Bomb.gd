@@ -69,6 +69,7 @@ func explode():
 	alive = false
 	
 	var explosion: = preload("res://Explosion.tscn").instance()
+	explosion.play_sound = true
 	explosion.global_position = global_position
 	
 	var explosion2: = preload("res://Explosion.tscn").instance()

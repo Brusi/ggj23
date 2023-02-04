@@ -1,5 +1,7 @@
 extends Node2D
 
+export var play_sound: = true
+
 var screenshake: = 0.0
 
 func _ready():
@@ -12,6 +14,8 @@ func _ready():
 		var circle: = preload("res://Circle.tscn").instance()
 		circle.position += Vector2(rand_range(-20,20),rand_range(-40,40))
 		add_child(circle)
+		
+	$Sound.play()
 	
 	yield(get_tree().create_timer(1.0), "timeout")
 	

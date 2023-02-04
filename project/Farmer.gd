@@ -29,8 +29,19 @@ onready var game: Game = get_parent().get_parent()
 
 var decoy:Node2D
 
+var can_play_step: = true
+
 func is_occupied():
 	return state == State.PREPARE or state == State.STAB or state == State.BOMB
+	
+func play_step_sound():
+	if not can_play_step:
+		return
+		
+	can_play_step = false
+	$Steps.get_child(randi() % $Steps.get_child_count()).play()
+	yield(get_tree().create_timer(0.2), "timeout")
+	can_play_step = true
 
 func _ready():
 	$Pitchfork.visible = false
@@ -57,6 +68,9 @@ func _physics_process(delta):
 		dir += 1
 	if Input.is_action_pressed("farmer_left"):
 		dir -= 1
+		
+	if dir != 0:
+		play_step_sound()
 		
 	if Input.is_action_just_pressed("farmer_action_1"):
 		try_plant_bomb()

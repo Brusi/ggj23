@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/farmer.png" type="Texture" id=1]
 [ext_resource path="res://Farmer.gd" type="Script" id=2]
@@ -7,6 +7,11 @@
 [ext_resource path="res://assets/sound/stab_1.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/sound/stab_2.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/stab_3.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/farmer_step_2.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/farmer_step_1.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/farmer_step_4.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/farmer_step_3.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/farmer_step_5.ogg" type="AudioStream" id=12]
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -35,18 +40,33 @@ audio_stream = ExtResource( 6 )
 [sub_resource type="AudioStreamRandomPitch" id=6]
 audio_stream = ExtResource( 7 )
 
+[sub_resource type="AudioStreamRandomPitch" id=9]
+audio_stream = ExtResource( 9 )
+
+[sub_resource type="AudioStreamRandomPitch" id=10]
+audio_stream = ExtResource( 8 )
+
+[sub_resource type="AudioStreamRandomPitch" id=12]
+audio_stream = ExtResource( 11 )
+
+[sub_resource type="AudioStreamRandomPitch" id=7]
+audio_stream = ExtResource( 10 )
+
+[sub_resource type="AudioStreamRandomPitch" id=8]
+audio_stream = ExtResource( 12 )
+
 [node name="Farmer" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="Clone" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -1880, 0 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="SpriteOld" type="Sprite" parent="."]
@@ -74,3 +94,20 @@ stream = SubResource( 5 )
 
 [node name="Stab3" type="AudioStreamPlayer" parent="Stab"]
 stream = SubResource( 6 )
+
+[node name="Steps" type="Node" parent="."]
+
+[node name="Step1" type="AudioStreamPlayer" parent="Steps"]
+stream = SubResource( 9 )
+
+[node name="Step2" type="AudioStreamPlayer" parent="Steps"]
+stream = SubResource( 10 )
+
+[node name="Step3" type="AudioStreamPlayer" parent="Steps"]
+stream = SubResource( 12 )
+
+[node name="Step4" type="AudioStreamPlayer" parent="Steps"]
+stream = SubResource( 7 )
+
+[node name="Step5" type="AudioStreamPlayer" parent="Steps"]
+stream = SubResource( 8 )
