@@ -40,6 +40,7 @@ func copy_state_to(new_obj):
 		s[0].flip_v = s[1].flip_v
 		s[0].offset = s[1].offset
 		s[0].visible = s[1].visible
+		s[0].play(s[1].animation)
 
 func _pull_bomb():
 	for bomb in get_tree().get_nodes_in_group("bomb"):
@@ -129,6 +130,14 @@ func _physics_process(delta):
 					dir += 1
 				if current_action == "rabbit_left":
 					dir -= 1
+					
+				if dir != 0:
+					pass
+					#$Sprite.play("run")
+					#$Sprite/Clone.play("run")
+				else:
+					$Sprite.play("idle")
+					$Sprite/Clone.play("idle")
 			
 				position.x += speed * delta * dir
 
@@ -164,14 +173,14 @@ func die_by_bomb():
 
 func die():
 	self.is_dead = true
-	$Sprite.flip_v = true
 	$Die.play()
+	$Sprite.play("dead")
+	$Sprite/Clone.play("dead")
 	if game.splash:
 		yield(get_tree().create_timer(1.5), "timeout")
 		pulled_bomb = false
 		is_dead = false
 		pulling_delay = 0.0
-		$Sprite.flip_v = false
 	else:
 		game.farmer_wins()
 
