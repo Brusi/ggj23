@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Rabbit.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sound/rabbit_step_4.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/rabbit_step_6.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/sound/rabbit_step_2.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/rabbit_die.ogg" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 25 )
@@ -69,3 +70,6 @@ stream = SubResource( 6 )
 
 [node name="Step6" type="AudioStreamPlayer" parent="Steps"]
 stream = SubResource( 7 )
+
+[node name="Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
