@@ -8,7 +8,7 @@ export var speed: = 200.0
 export var after_pull_delay: = 0.1
 export var pulling_time: = 2.5
 export var min_pull_time: = 0.3
-export var carrot_margin := 21
+export var carrot_margin := 46.34 / 2
 var is_dead: bool = false
 var pulled_bomb := false
 
@@ -131,8 +131,10 @@ func _physics_process(delta):
 				if current_action == "rabbit_left":
 					dir -= 1
 					
-				if dir != 0:
-					pass
+				if pulling:
+					$Sprite.play("pull")
+					$Sprite/Clone.play("pull")
+				elif dir != 0:
 					$Sprite.play("run")
 					$Sprite/Clone.play("run")
 				else:

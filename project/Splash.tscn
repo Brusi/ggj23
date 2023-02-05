@@ -6,9 +6,6 @@
 [node name="Game" instance=ExtResource( 2 )]
 splash = true
 
-[node name="Carrot20" parent="CarrotContainer" index="19"]
-position = Vector2( 756, 550 )
-
 [node name="GUI" parent="." index="5"]
 visible = false
 
@@ -50,6 +47,6 @@ theme = ExtResource( 1 )
 text = "PLACE A CARDBOARD ==>     <== PLACE A CARDBOARD
 BETWEEN THE PLAYERS ==>     <== BETWEEN THE PLAYERS
 
-Press [SPACE] To Start                  Press [SPACE] to Start"
+Press [SPACE] To Start                    Press [SPACE] to Start"
 align = 1
 valign = 1
