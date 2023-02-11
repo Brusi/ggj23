@@ -27,7 +27,7 @@ func _process(delta):
 	elif Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 		
-	print(Engine.get_frames_per_second())
+	#print(Engine.get_frames_per_second())
 	
 func end():
 	ended = true

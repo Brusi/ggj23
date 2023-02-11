@@ -43,7 +43,7 @@ func _physics_process(delta):
 			rot_speed += 0.05 * 2 * PI * cos(PI * rot_speed_diff / 0.1)
 			$CarrotGraphics.offset.x = 2 * cos(PI * rot_speed_diff / 0.01)
 		else:
-			$PullSound.volume_db = max(-1000, $PullSound.volume_db - 1)
+			$PullSound.volume_db = max(-1000, $PullSound.volume_db - 60 * delta)
 			if $PullSound.volume_db < -100:
 				$PullSound.volume_db = 0
 				$PullSound.stop()

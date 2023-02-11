@@ -1,5 +1,7 @@
 extends Node2D
 
+signal pulling
+
 class_name Rabbit
 
 export var min_x: = 980
@@ -75,6 +77,8 @@ func _pull_carrot(delta) -> bool:
 	if carrot.out >= 1:
 		carrot.attached = false
 		game.collect_carrot()
+		
+	emit_signal("pulling", global_position.x)
 	
 	return true
 	

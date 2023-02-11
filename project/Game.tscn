@@ -214,3 +214,5 @@ theme = ExtResource( 13 )
 text = "You've lost...
 Press [SPACE] to restart"
 align = 1
+
+[connection signal="pulling" from="RightMask/Rabbit" to="RightMask/Farmer" method="_on_Rabbit_pulling"]

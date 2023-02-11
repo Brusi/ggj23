@@ -134,6 +134,8 @@ func pitchfork_stab():
 	
 func try_plant_bomb():
 	var bombs: = get_tree().get_nodes_in_group("bomb") 
+	if is_occupied():
+		return
 	if not bombs.empty():
 		return
 	
@@ -172,3 +174,10 @@ func try_plant_bomb():
 	
 	state = State.IDLE
 	
+
+func _on_Rabbit_pulling(x:float):
+	if x < min_x:
+		# Hack to prevent clone from emitting.
+		return
+	# Add some minor timeout to make it feel human
+	$AI.wiggle_at(x)

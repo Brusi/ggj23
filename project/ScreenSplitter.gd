@@ -14,6 +14,10 @@ func _ready():
 func clone_obj(obj):
 	var new_obj:Node = obj.duplicate()
 	new_obj.script = null
+	
+	var ai_node: = new_obj.get_node_or_null("AI")
+	if ai_node != null:
+		ai_node.queue_free()
 	for group in new_obj.get_groups():
 		new_obj.remove_from_group(group)
 	obj.decoy = new_obj
