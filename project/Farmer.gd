@@ -1,6 +1,6 @@
 extends Node2D
 
-const leftmost_carrot: = 1060.0
+const leftmost_carrot: = 1060.0 - 46.4
 const carrot_diff: = 46.4
 
 export var min_x: = 980
