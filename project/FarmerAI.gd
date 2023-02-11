@@ -11,7 +11,7 @@ var started: = false
 var target: = 0.0
 
 var last_rabbit_pos:float = lerp(min_x, max_x, 0.5)
-var possible_dist: = 0.0
+var possible_dist: = 400
 
 var next_hit: = rand_range(0, 1.0)
 
