@@ -15,7 +15,7 @@ random_pitch = 1.4
 [sub_resource type="AudioStreamRandomPitch" id=3]
 audio_stream = ExtResource( 4 )
 
-[node name="Carrot" type="Node2D"]
+[node name="Carrot" type="Node2D" groups=["carrot"]]
 script = ExtResource( 2 )
 
 [node name="CarrotGraphics" type="Sprite" parent="."]

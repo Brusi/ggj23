@@ -33,7 +33,6 @@ func update_loop():
 	while true:
 		if not is_instance_valid(self):
 			return
-		print("Trying to place bomb")
 		trigger_action("farmer_action_1", true)
 		yield(get_tree().create_timer(0.05), "timeout")
 		trigger_action("farmer_action_1", false)
