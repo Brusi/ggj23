@@ -55,7 +55,7 @@ animations = [ {
 "frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "idle",
-"speed": 1.0
+"speed": 0.5
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
@@ -138,7 +138,6 @@ stream = ExtResource( 9 )
 
 [node name="AI" type="Node" parent="."]
 script = ExtResource( 13 )
-enabled = false
 
 [node name="Target" type="Sprite" parent="AI"]
 visible = false

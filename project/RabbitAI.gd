@@ -37,7 +37,7 @@ func recalc_target():
 	var bomb = null
 	for b in get_tree().get_nodes_in_group("bomb"):
 		if randi() % 10 == 0:
-			possible_targets.push_back(bomb.global_position.x)
+			possible_targets.push_back(b.global_position.x)
 
 	for tries in range(5):
 		target_x = possible_targets[randi() % possible_targets.size()]

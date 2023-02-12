@@ -15,7 +15,7 @@ var ended: = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	update_score_texts()
 
 func _process(delta):
 	if Input.is_action_just_pressed("restart") or (ended and Input.is_action_just_pressed("ui_accept")):
@@ -42,10 +42,13 @@ func player_wins(wins_gui):
 	ended = true
 	wins_gui.visible = true
 
+func update_score_texts():
+	farmer_counter.text = str(10 - collected_carrots)
+	rabbit_counter.text = str(collected_carrots) + " / 10"
+
 func collect_carrot():
 	collected_carrots += 1
-	farmer_counter.text = str(15 - collected_carrots)
-	rabbit_counter.text = str(collected_carrots) + " / 15"
+	update_score_texts()
 	
-	if collected_carrots >= 15:
+	if collected_carrots >= 10:
 		rabbit_wins()

@@ -8,7 +8,7 @@ export var min_x: = 980
 export var max_x: = 1920
 export var speed: = 200.0
 export var after_pull_delay: = 0.1
-export var pulling_time: = 2.5
+export var pulling_time: = 1.5
 export var min_pull_time: = 0.3
 export var carrot_margin := 46.34 / 2
 var is_dead: bool = false
@@ -67,7 +67,7 @@ func _pull_carrot(delta) -> bool:
 	if not carrot:
 		return false
 		
-	global_position.x += (carrot.global_position.x - global_position.x) * 0.3
+	global_position.x += (carrot.global_position.x - global_position.x) * 0.375 / pulling_time
 	
 	carrot.being_pulled_for += delta
 	carrot.out += delta / pulling_time

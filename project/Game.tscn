@@ -178,8 +178,8 @@ margin_top = 237.0
 margin_right = 1796.0
 margin_bottom = 388.0
 theme = ExtResource( 13 )
-text = "You've won!
-Press [SPACE] to restart"
+text = "You Win!
+Press [SPACE] to Restart"
 align = 1
 
 [node name="Label2" type="Label" parent="GUI/rabbit_wins"]
@@ -188,8 +188,8 @@ margin_top = 237.0
 margin_right = 826.0
 margin_bottom = 388.0
 theme = ExtResource( 13 )
-text = "You've lost...
-Press [SPACE] to restart"
+text = "You Lose...
+Press [SPACE] to Restart"
 align = 1
 
 [node name="farmer_wins" type="Control" parent="GUI"]
@@ -201,8 +201,8 @@ margin_top = 237.0
 margin_right = 823.0
 margin_bottom = 388.0
 theme = ExtResource( 13 )
-text = "You've won!
-Press [SPACE] to restart"
+text = "You Win!
+Press [SPACE] to Restart"
 align = 1
 
 [node name="Label2" type="Label" parent="GUI/farmer_wins"]
@@ -211,8 +211,8 @@ margin_top = 237.0
 margin_right = 1791.0
 margin_bottom = 388.0
 theme = ExtResource( 13 )
-text = "You've lost...
-Press [SPACE] to restart"
+text = "You Lose...
+Press [SPACE] to Restart"
 align = 1
 
 [connection signal="pulling" from="RightMask/Rabbit" to="RightMask/Farmer" method="_on_Rabbit_pulling"]
