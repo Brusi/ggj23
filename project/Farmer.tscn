@@ -1,9 +1,7 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=27 format=2]
 
-[ext_resource path="res://assets/farmer_stab.png" type="Texture" id=1]
+[ext_resource path="res://FarmerFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Farmer.gd" type="Script" id=2]
-[ext_resource path="res://assets/farmer_walk.png" type="Texture" id=3]
-[ext_resource path="res://assets/farmaer_idle.png" type="Texture" id=4]
 [ext_resource path="res://assets/sound/stab_1.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/sound/stab_2.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/stab_3.ogg" type="AudioStream" id=7]
@@ -12,80 +10,11 @@
 [ext_resource path="res://assets/sound/farmer_step_4.ogg" type="AudioStream" id=10]
 [ext_resource path="res://assets/sound/farmer_step_3.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/sound/farmer_step_5.ogg" type="AudioStream" id=12]
-[ext_resource path="res://assets/farmer_bomber.png" type="Texture" id=13]
 [ext_resource path="res://assets/sound/grunt_2.ogg" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/grunt_1.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/bomb_plant.ogg" type="AudioStream" id=16]
 [ext_resource path="res://FarmerAI.gd" type="Script" id=17]
 [ext_resource path="res://icon.png" type="Texture" id=18]
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 168, 336 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 168, 0, 168, 336 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 168, 336 )
-
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 168, 0, 168, 336 )
-
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 178, 899 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 178, 0, 178, 899 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 168, 336 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 168, 0, 168, 336 )
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ) ],
-"loop": true,
-"name": "default",
-"speed": 2.0
-}, {
-"frames": [ SubResource( 17 ), SubResource( 17 ), SubResource( 17 ), SubResource( 18 ) ],
-"loop": true,
-"name": "plant",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 13 ) ],
-"loop": true,
-"name": "stab_one",
-"speed": 1.0
-}, {
-"frames": [ SubResource( 14 ) ],
-"loop": true,
-"name": "stab_two",
-"speed": 1.0
-}, {
-"frames": [ SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
-"name": "walk",
-"speed": 10.0
-} ]
 
 [sub_resource type="AudioStreamRandomPitch" id=4]
 audio_stream = ExtResource( 5 )
@@ -125,12 +54,12 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 1 )
+frames = ExtResource( 1 )
 playing = true
 
 [node name="Clone" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -1880, 0 )
-frames = SubResource( 1 )
+frames = ExtResource( 1 )
 playing = true
 
 [node name="Stab" type="Node" parent="."]

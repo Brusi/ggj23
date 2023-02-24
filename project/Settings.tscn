@@ -6,8 +6,6 @@
 
 [node name="Settings" type="Node"]
 script = ExtResource( 1 )
-rabbit_ai = true
-farmer_ai = true
 
 [node name="MusicIntro" type="AudioStreamPlayer" parent="."]
 pause_mode = 2

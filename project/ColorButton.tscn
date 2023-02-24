@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ColorButton.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/button.png" type="Texture" id=2]
+[ext_resource path="res://Theme.tres" type="Theme" id=3]
+
+[node name="Button" type="TextureButton"]
+self_modulate = Color( 0.396078, 0.388235, 0.709804, 1 )
+texture_normal = ExtResource( 2 )
+script = ExtResource( 1 )
+label = "Play as Rabbit"
+color = Color( 0.396078, 0.388235, 0.709804, 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+text = "Play as Rabbit"
+align = 1
+valign = 1
+
+[connection signal="button_down" from="." to="." method="_on_Button_button_down"]
+[connection signal="button_up" from="." to="." method="_on_Button_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]
