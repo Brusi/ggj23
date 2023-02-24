@@ -55,7 +55,7 @@ animations = [ {
 "frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "idle",
-"speed": 0.5
+"speed": 2.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,

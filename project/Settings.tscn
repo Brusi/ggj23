@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Settings.gd" type="Script" id=1]
+[ext_resource path="res://assets/sound/music_loop.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/sound/music_intro.ogg" type="AudioStream" id=3]
+
+[node name="Settings" type="Node"]
+script = ExtResource( 1 )
+rabbit_ai = true
+farmer_ai = true
+
+[node name="MusicIntro" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 3 )
+volume_db = -5.0
+
+[node name="MusicLoop" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 2 )
+volume_db = -5.0
+
+[connection signal="finished" from="MusicIntro" to="." method="_on_MusicIntro_finished"]

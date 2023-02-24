@@ -174,7 +174,6 @@ stream = SubResource( 19 )
 
 [node name="AI" type="Node" parent="."]
 script = ExtResource( 17 )
-enabled = false
 
 [node name="Sprite" type="Sprite" parent="AI"]
 visible = false

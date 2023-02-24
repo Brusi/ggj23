@@ -1,6 +1,6 @@
 extends Node
 
-export var enabled: = true
+onready var enabled: = Settings.rabbit_ai
 
 const min_x: = 980
 const max_x: = 1920

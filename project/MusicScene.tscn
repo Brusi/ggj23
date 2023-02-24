@@ -2,10 +2,13 @@
 
 [ext_resource path="res://assets/sound/music_loop.ogg" type="AudioStream" id=1]
 [ext_resource path="res://assets/sound/music_intro.ogg" type="AudioStream" id=2]
-[ext_resource path="res://MusicScene.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "
+"
 
 [node name="MusicScene" type="Node"]
-script = ExtResource( 3 )
+script = SubResource( 1 )
 
 [node name="MusicIntro" type="AudioStreamPlayer" parent="."]
 pause_mode = 2

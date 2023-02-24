@@ -16,6 +16,16 @@ var ended: = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_score_texts()
+	if splash:
+		$SplashTexts/RabbitControls.visible = not Settings.rabbit_ai
+		$SplashTexts/FarnerControls.visible = not Settings.farmer_ai
+		$SplashTexts/PlaceCardboard.visible = not Settings.rabbit_ai and not Settings.farmer_ai
+	
+	if not splash and not (Settings.farmer_ai and Settings.rabbit_ai):
+		if Settings.rabbit_ai:
+			$GUI/RightCover.visible = true
+		elif Settings.farmer_ai:
+			$GUI/LeftCover.visible = true
 
 func _process(delta):
 	if Input.is_action_just_pressed("restart") or (ended and Input.is_action_just_pressed("ui_accept")):

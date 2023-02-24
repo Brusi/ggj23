@@ -15,11 +15,6 @@ _global_script_classes=[ {
 "path": "res://Carrot.gd"
 }, {
 "base": "Node2D",
-"class": "Farmer",
-"language": "GDScript",
-"path": "res://Farmer.gd"
-}, {
-"base": "Node2D",
 "class": "Game",
 "language": "GDScript",
 "path": "res://Game.gd"
@@ -31,7 +26,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Carrot": "",
-"Farmer": "",
 "Game": "",
 "Rabbit": ""
 }
@@ -44,7 +38,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-MusicScene="*res://MusicScene.tscn"
+Settings="*res://Settings.tscn"
 
 [display]
 

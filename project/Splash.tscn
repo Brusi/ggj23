@@ -6,47 +6,60 @@
 [node name="Game" instance=ExtResource( 2 )]
 splash = true
 
-[node name="GUI" parent="." index="5"]
-visible = false
+[node name="SplashTexts" type="CanvasLayer" parent="." index="6"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="6"]
-
-[node name="Label" type="Label" parent="CanvasLayer" index="0"]
+[node name="RabbitControls" type="Label" parent="SplashTexts" index="0"]
 margin_left = 990.0
-margin_top = 786.0
+margin_top = 258.0
 margin_right = 1918.0
 margin_bottom = 1075.0
 rect_pivot_offset = Vector2( 294, 74 )
 theme = ExtResource( 1 )
-text = "[Left]/[Right] to move
+text = "Press [Space] to Start
+
+
+
+
+
+
+[Left]/[Right] to move
 [Down] to pull carrot
 Collect 15 Carrots!"
 align = 1
 valign = 1
 
-[node name="Label2" type="Label" parent="CanvasLayer" index="1"]
+[node name="FarnerControls" type="Label" parent="SplashTexts" index="1"]
 margin_left = 2.0
-margin_top = 736.0
+margin_top = 241.0
 margin_right = 935.0
 margin_bottom = 1081.0
 rect_pivot_offset = Vector2( 294, 74 )
 theme = ExtResource( 1 )
-text = "[A]/[D] to Move, [S] to Attack,
-[W] to plant a Booby Trap
+text = "Press [Space] to Start
+
+
+
+
+
+
+[A]/[D] to Move, [S] to Attack,
+[W] to plant a CarrotBomb™
 Catch the Rabbit!"
 align = 1
 valign = 1
 
-[node name="Label3" type="Label" parent="CanvasLayer" index="2"]
+[node name="PlaceCardboard" type="Label" parent="SplashTexts" index="2"]
 margin_left = 82.0
 margin_top = 47.0
 margin_right = 1841.0
 margin_bottom = 242.0
 rect_pivot_offset = Vector2( 294, 74 )
 theme = ExtResource( 1 )
-text = "PLACE A CARDBOARD ==>     <== PLACE A CARDBOARD
-BETWEEN THE PLAYERS ==>     <== BETWEEN THE PLAYERS
-
-Press [SPACE] To Start                    Press [SPACE] to Start"
+custom_colors/font_color = Color( 1, 0.854902, 0.686275, 1 )
+text = "  LACE A CARDBOARD ==>     <== PLACE A CARDBOARD
+BETWEEN THE PLAYERS ==>     <== BETWEEN THE PLAYERS"
 align = 1
 valign = 1
+
+[node name="GUI" parent="." index="7"]
+visible = false

@@ -43,7 +43,7 @@ position = Vector2( 1229.5, 133 )
 texture = ExtResource( 9 )
 
 [node name="RightMask" type="Control" parent="."]
-margin_left = 985.0
+margin_left = 988.0
 margin_top = 2.0
 margin_right = 1935.0
 margin_bottom = 1082.0
@@ -214,5 +214,18 @@ theme = ExtResource( 13 )
 text = "You Lose...
 Press [SPACE] to Restart"
 align = 1
+
+[node name="RightCover" type="ColorRect" parent="GUI"]
+visible = false
+margin_left = 988.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.25098, 0.0980392, 0.0313726, 1 )
+
+[node name="LeftCover" type="ColorRect" parent="GUI"]
+visible = false
+margin_right = 933.0
+margin_bottom = 1080.0
+color = Color( 0.25098, 0.0980392, 0.0313726, 1 )
 
 [connection signal="pulling" from="RightMask/Rabbit" to="RightMask/Farmer" method="_on_Rabbit_pulling"]

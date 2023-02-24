@@ -4,7 +4,7 @@ const min_x: = 980.0
 const max_x: = 1920.0
 const rabbit_speed: = 200.0  # Based on rabbit.
 
-export var enabled: = true
+onready var enabled: = Settings.farmer_ai
 
 var started: = false
 
