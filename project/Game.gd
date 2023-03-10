@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Game
 
+const TARGET_CARROTS: = 15
+
 export var splash: = false
 
 onready var farmer_counter = $GUI/farmer_counter
@@ -51,12 +53,12 @@ func player_wins(wins_gui):
 	wins_gui.visible = true
 
 func update_score_texts():
-	farmer_counter.text = str(10 - collected_carrots)
-	rabbit_counter.text = str(collected_carrots) + " / 10"
+	farmer_counter.text = str(TARGET_CARROTS - collected_carrots)
+	rabbit_counter.text = str(collected_carrots) + " / " + str(TARGET_CARROTS)
 
 func collect_carrot():
 	collected_carrots += 1
 	update_score_texts()
 	
-	if collected_carrots >= 10:
+	if collected_carrots >= TARGET_CARROTS:
 		rabbit_wins()
