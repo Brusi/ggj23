@@ -4,6 +4,8 @@ const min_x: = 980.0
 const max_x: = 1920.0
 const rabbit_speed: = 200.0  # Based on rabbit.
 
+@export var notice_interval: = 1.0
+
 @onready var enabled: = Settings.farmer_ai
 
 var started: = false
@@ -14,6 +16,12 @@ var last_rabbit_pos:float = lerp(min_x, max_x, 0.5)
 var possible_dist: = 400
 
 var next_hit: = randf_range(0, 1.0)
+
+var elapsed_time: float = 0.0
+var notice_timer: float = 0.0
+var reported_pos: float = 0.0
+var reported_time: float = 0.0
+var has_new_report: bool = false
 
 func _ready():
 	trigger_action("farmer_pitchfork", false)
@@ -60,7 +68,20 @@ func _physics_process(delta):
 		return
 		
 	var width:float = max_x - min_x
+	elapsed_time += delta
 	possible_dist = min(possible_dist + rabbit_speed * delta, width)
+	
+	notice_timer += delta
+	if notice_timer >= notice_interval:
+		notice_timer -= notice_interval
+		if has_new_report:
+			has_new_report = false
+			last_rabbit_pos = reported_pos
+			possible_dist = min((elapsed_time - reported_time) * rabbit_speed, width)
+			if randi() % 3 == 0:
+				next_hit = (randi() % 2)
+			else:
+				next_hit = randf_range(0.0, 1.0)
 	
 	update_target()
 	
@@ -85,17 +106,9 @@ func _physics_process(delta):
 	trigger_action("farmer_left", diff > 0)
 	
 func wiggle_at(x:float) -> void:
-	#print("x=",x)
-	var notice_delay: = 0.0
-	await get_tree().create_timer(notice_delay).timeout
-	
-	last_rabbit_pos = x
-	#possible_dist = 0.0
-	possible_dist = notice_delay * rabbit_speed  # Atone for the notice delay
-	if randi() % 3 == 0:
-		next_hit = (randi() % 2)
-	else:
-		next_hit = randf_range(0.0, 1.0)
+	reported_pos = x
+	reported_time = elapsed_time
+	has_new_report = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

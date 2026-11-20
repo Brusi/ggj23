@@ -1,5 +1,7 @@
 extends Node
 
+@export var notice_interval: = 1.0
+
 @onready var enabled: = Settings.rabbit_ai
 
 const min_x: = 980
@@ -12,6 +14,9 @@ var target_x = 0.0
 var started: = false
 
 var on_farmer: = false
+
+var notice_timer: float = 0.0
+var noticed_farmer_pos: float = 0.0
 
 func get_diff(this_x:float, other_x:float) -> float:
 	var diff:float = other_x - this_x
@@ -41,8 +46,7 @@ func recalc_target():
 
 	for tries in range(5):
 		target_x = possible_targets[randi() % possible_targets.size()]
-		var farmer:Node2D = $"../../Farmer"
-		var farmer_diff = get_diff(target_x, farmer.global_position.x)
+		var farmer_diff = get_diff(target_x, noticed_farmer_pos)
 		if abs(farmer_diff) > 240:
 			break
 	$Target.global_position.x = target_x
@@ -54,6 +58,7 @@ func _ready():
 	
 	if not enabled:
 		return
+	noticed_farmer_pos = $"../../Farmer".global_position.x
 	recalc_target()
 	
 	await get_tree().create_timer(2.0).timeout
@@ -69,7 +74,11 @@ func _physics_process(delta):
 		return
 	var farmer:Node2D = $"../../Farmer"
 	var rabbit:Node2D = $".."
-	var farmer_diff = get_diff(rabbit.global_position.x, farmer.global_position.x)
+	notice_timer += delta
+	if notice_timer >= notice_interval:
+		notice_timer -= notice_interval
+		noticed_farmer_pos = farmer.global_position.x
+	var farmer_diff = get_diff(rabbit.global_position.x, noticed_farmer_pos)
 	var target_diff: = get_diff(rabbit.global_position.x, target_x)
 	
 	var on_farmer_new:bool = abs(farmer_diff) < 20
