@@ -9,11 +9,11 @@ splash = true
 [node name="SplashTexts" type="CanvasLayer" parent="." index="6"]
 
 [node name="RabbitControls" type="Label" parent="SplashTexts" index="0"]
-margin_left = 990.0
-margin_top = 258.0
-margin_right = 1918.0
-margin_bottom = 1075.0
-rect_pivot_offset = Vector2( 294, 74 )
+offset_left = 990.0
+offset_top = 258.0
+offset_right = 1918.0
+offset_bottom = 1075.0
+pivot_offset = Vector2( 294, 74 )
 theme = ExtResource( 1 )
 text = "Press [Space] to Start
 
@@ -29,11 +29,11 @@ align = 1
 valign = 1
 
 [node name="FarnerControls" type="Label" parent="SplashTexts" index="1"]
-margin_left = 2.0
-margin_top = 241.0
-margin_right = 935.0
-margin_bottom = 1081.0
-rect_pivot_offset = Vector2( 294, 74 )
+offset_left = 2.0
+offset_top = 241.0
+offset_right = 935.0
+offset_bottom = 1081.0
+pivot_offset = Vector2( 294, 74 )
 theme = ExtResource( 1 )
 text = "Press [Space] to Start
 
@@ -49,13 +49,13 @@ align = 1
 valign = 1
 
 [node name="PlaceCardboard" type="Label" parent="SplashTexts" index="2"]
-margin_left = 82.0
-margin_top = 47.0
-margin_right = 1841.0
-margin_bottom = 242.0
-rect_pivot_offset = Vector2( 294, 74 )
+offset_left = 82.0
+offset_top = 47.0
+offset_right = 1841.0
+offset_bottom = 242.0
+pivot_offset = Vector2( 294, 74 )
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 0.854902, 0.686275, 1 )
+theme_override_colors/font_color = Color( 1, 0.854902, 0.686275, 1 )
 text = "    PLACE A CARDBOARD ==>     <== PLACE A CARDBOARD    
 BETWEEN THE PLAYERS ==>     <== BETWEEN THE PLAYERS"
 align = 1

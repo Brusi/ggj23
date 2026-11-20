@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/farmer_step_4.ogg-a4013bd6e541afb368ea37409d006ead.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://n13rdljdmlqn"
+path="res://.godot/imported/farmer_step_4.ogg-a4013bd6e541afb368ea37409d006ead.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sound/farmer_step_4.ogg"
-dest_files=[ "res://.import/farmer_step_4.ogg-a4013bd6e541afb368ea37409d006ead.oggstr" ]
+dest_files=["res://.godot/imported/farmer_step_4.ogg-a4013bd6e541afb368ea37409d006ead.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

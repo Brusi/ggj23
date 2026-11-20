@@ -3,13 +3,13 @@ extends Node2D
 const leftmost_carrot: = 1060.0 - 46.4
 const carrot_diff: = 46.4
 
-export var min_x: = 980
-export var max_x: = 1920
-export var speed: = 300.0
+@export var min_x: = 980
+@export var max_x: = 1920
+@export var speed: = 300.0
 const stabbing_margin = 40
 
-export var pitcfork_miss_sound_delay: = 0.3
-export var pitcfork_cooldown: = 1.5
+@export var pitcfork_miss_sound_delay: = 0.3
+@export var pitcfork_cooldown: = 1.5
 
 enum State {
 	IDLE,
@@ -21,12 +21,12 @@ enum State {
 
 var state:int = State.IDLE
 
-onready var rabbit = get_node("/root/Game/RightMask/Rabbit")
+@onready var rabbit = get_node("/root/Game/RightMask/Rabbit")
 var alive = true
 
 var cooldown_bomb: = 0.0
 
-onready var game: Game = get_parent().get_parent()
+@onready var game: Game = get_parent().get_parent()
 
 var decoy:Node2D
 
@@ -41,21 +41,21 @@ func play_step_sound():
 		
 	can_play_step = false
 	$Steps.get_child(randi() % $Steps.get_child_count()).play()
-	yield(get_tree().create_timer(0.2), "timeout")
+	await get_tree().create_timer(0.2).timeout
 	can_play_step = true
 
 func _ready():
-	$Sprite.play("default")
+	$Sprite2D.play("default")
 	get_node("/root/Game/LeftMask").clone_obj(self)
 	global_position.x = lerp(min_x, max_x, 0.5)
 
 func copy_state_to(new_obj):
-	for s in [[new_obj.get_node("Sprite") ,$Sprite],
-			  [new_obj.get_node("Sprite/Clone"), $Sprite/Clone]]:
+	for s in [[new_obj.get_node("Sprite2D") ,$Sprite2D],
+			  [new_obj.get_node("Sprite2D/Clone"), $Sprite2D/Clone]]:
 		s[0].flip_h = s[1].flip_h
 		s[0].offset = s[1].offset
 		s[0].visible = s[1].visible
-		(s[0] as AnimatedSprite).play((s[1] as AnimatedSprite).animation)
+		(s[0] as AnimatedSprite2D).play((s[1] as AnimatedSprite2D).animation)
 	
 func _physics_process(delta):
 	if game.ended:
@@ -72,13 +72,13 @@ func _physics_process(delta):
 		
 	if dir != 0:
 		if !is_occupied():
-			$Sprite.play("walk")
-			$Sprite/Clone.play("walk")
+			$Sprite2D.play("walk")
+			$Sprite2D/Clone.play("walk")
 		play_step_sound()
 	elif state == State.IDLE:
 		if !is_occupied():
-			$Sprite.play("default")
-			$Sprite/Clone.play("default")
+			$Sprite2D.play("default")
+			$Sprite2D/Clone.play("default")
 		
 	if Input.is_action_just_pressed("farmer_action_1"):
 		try_plant_bomb()
@@ -95,11 +95,11 @@ func _physics_process(delta):
 	
 	if !is_occupied():
 		if dir > 0:
-			$Sprite.flip_h = true
-			$Sprite/Clone.flip_h = true
+			$Sprite2D.flip_h = true
+			$Sprite2D/Clone.flip_h = true
 		elif dir < 0:
-			$Sprite.flip_h = false
-			$Sprite/Clone.flip_h = false
+			$Sprite2D.flip_h = false
+			$Sprite2D/Clone.flip_h = false
 	
 func pitchfork_stab():
 	if is_occupied():
@@ -107,16 +107,16 @@ func pitchfork_stab():
 
 	state = State.PREPARE
 	
-	$Sprite.play("stab_one")
-	$Sprite/Clone.play("stab_one")
+	$Sprite2D.play("stab_one")
+	$Sprite2D/Clone.play("stab_one")
 	
-	yield(get_tree().create_timer(0.2), "timeout")
+	await get_tree().create_timer(0.2).timeout
 	
 	state = State.STAB
 	$Stab.get_child(randi() % $Stab.get_child_count()).play()
 	
-	$Sprite.play("stab_two")
-	$Sprite/Clone.play("stab_two")
+	$Sprite2D.play("stab_two")
+	$Sprite2D/Clone.play("stab_two")
 	
 	var cooldown = pitcfork_cooldown
 	
@@ -124,19 +124,19 @@ func pitchfork_stab():
 		rabbit.die()
 	else:
 		cooldown -= pitcfork_miss_sound_delay
-		yield(get_tree().create_timer(pitcfork_miss_sound_delay), "timeout")
+		await get_tree().create_timer(pitcfork_miss_sound_delay).timeout
 		$Grunt.get_child(randi() % $Grunt.get_child_count()).play()
 		
-	yield(get_tree().create_timer(cooldown), "timeout")
+	await get_tree().create_timer(cooldown).timeout
 	
 	state = State.IDLE
-	$Sprite.play("default")
+	$Sprite2D.play("default")
 	
 func try_plant_bomb():
 	var bombs: = get_tree().get_nodes_in_group("bomb") 
 	if is_occupied():
 		return
-	if not bombs.empty():
+	if not bombs.is_empty():
 		return
 	
 	var target_i = round((global_position.x - leftmost_carrot) / carrot_diff)
@@ -157,20 +157,20 @@ func try_plant_bomb():
 			return
 			
 	state = State.BOMB
-	$Sprite.play("plant")
-	$Sprite/Clone.play("plant")
+	$Sprite2D.play("plant")
+	$Sprite2D/Clone.play("plant")
 	$Plant.play()
 	
-	yield(get_tree().create_timer(0.4), "timeout")
+	await get_tree().create_timer(0.4).timeout
 	
 			
-	var bomb: = preload("res://Bomb.tscn").instance()
+	var bomb: = preload("res://Bomb.tscn").instantiate()
 	game.add_child(bomb)
 	bomb.global_position.x = target_x
 	bomb.global_position.y = 541
 
-	$Sprite.play("default")
-	$Sprite/Clone.play("default")
+	$Sprite2D.play("default")
+	$Sprite2D/Clone.play("default")
 	
 	state = State.IDLE
 	

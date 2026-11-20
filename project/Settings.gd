@@ -1,10 +1,10 @@
 extends Node
 
-export var music_on: = true
-export var sound_on: = true
+@export var music_on: = true
+@export var sound_on: = true
 
-export var rabbit_ai: = false
-export var farmer_ai: = false
+@export var rabbit_ai: = false
+@export var farmer_ai: = false
 
 
 

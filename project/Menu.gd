@@ -19,4 +19,4 @@ func _on_FarmerButton_pressed():
 	start_game()
 	
 func start_game() -> void:
-	get_tree().change_scene("res://Splash.tscn")
+	get_tree().change_scene_to_file("res://Splash.tscn")

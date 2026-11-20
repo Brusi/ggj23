@@ -4,7 +4,7 @@ const min_x: = 980.0
 const max_x: = 1920.0
 const rabbit_speed: = 200.0  # Based on rabbit.
 
-onready var enabled: = Settings.farmer_ai
+@onready var enabled: = Settings.farmer_ai
 
 var started: = false
 
@@ -13,7 +13,7 @@ var target: = 0.0
 var last_rabbit_pos:float = lerp(min_x, max_x, 0.5)
 var possible_dist: = 400
 
-var next_hit: = rand_range(0, 1.0)
+var next_hit: = randf_range(0, 1.0)
 
 func _ready():
 	trigger_action("farmer_pitchfork", false)
@@ -26,7 +26,7 @@ func _ready():
 	
 func update_loop():
 	# A few sec delay at start
-	yield(get_tree().create_timer(2.0), "timeout")
+	await get_tree().create_timer(2.0).timeout
 	if not is_instance_valid(self):
 		return
 	started = true
@@ -34,9 +34,9 @@ func update_loop():
 		if not is_instance_valid(self):
 			return
 		trigger_action("farmer_action_1", true)
-		yield(get_tree().create_timer(0.05), "timeout")
+		await get_tree().create_timer(0.05).timeout
 		trigger_action("farmer_action_1", false)
-		yield(get_tree().create_timer(0.75), "timeout")
+		await get_tree().create_timer(0.75).timeout
 
 	
 func trigger_action(action:String, pressed:bool) -> void:
@@ -66,7 +66,7 @@ func _physics_process(delta):
 	
 	var farmer = get_parent()
 
-	$Sprite.global_position.x = target
+	$Sprite2D.global_position.x = target
 	
 	var diff:float = farmer.global_position.x - target
 	while diff > width/2:
@@ -74,11 +74,11 @@ func _physics_process(delta):
 	while diff < -width/2:
 		diff += width
 	
-	var should_attack: = abs(diff) < 5
+	var should_attack:bool = abs(diff) < 5
 	trigger_action("farmer_pitchfork", false)
 	trigger_action("farmer_pitchfork", should_attack)
 	if should_attack:
-		next_hit = rand_range(0.0, 1.0)
+		next_hit = randf_range(0.0, 1.0)
 		
 		
 	trigger_action("farmer_right", diff < 0)
@@ -87,7 +87,7 @@ func _physics_process(delta):
 func wiggle_at(x:float) -> void:
 	#print("x=",x)
 	var notice_delay: = 0.0
-	yield(get_tree().create_timer(notice_delay), "timeout")
+	await get_tree().create_timer(notice_delay).timeout
 	
 	last_rabbit_pos = x
 	#possible_dist = 0.0
@@ -95,7 +95,7 @@ func wiggle_at(x:float) -> void:
 	if randi() % 3 == 0:
 		next_hit = (randi() % 2)
 	else:
-		next_hit = rand_range(0.0, 1.0)
+		next_hit = randf_range(0.0, 1.0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

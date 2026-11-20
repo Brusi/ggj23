@@ -1,23 +1,23 @@
 extends Node2D
+class_name Rabbit
 
 signal pulling
 
-class_name Rabbit
 
-export var min_x: = 980
-export var max_x: = 1920
-export var speed: = 200.0
-export var after_pull_delay: = 0.1
-export var pulling_time: = 1.5
-export var min_pull_time: = 0.3
-export var carrot_margin := 46.34 / 2
+@export var min_x: = 980
+@export var max_x: = 1920
+@export var speed: = 200.0
+@export var after_pull_delay: = 0.1
+@export var pulling_time: = 1.5
+@export var min_pull_time: = 0.3
+@export var carrot_margin := 46.34 / 2
 var is_dead: bool = false
 var pulled_bomb := false
 
 var current_action = ""
 var pulling_delay = 0.0
 var min_active_pulling_time = 0.0
-var pulling := false
+var is_pulling := false
 
 # This is "object alive", not "player alive"
 var alive := true
@@ -27,17 +27,17 @@ var can_play_step: = true
 
 const ACTIONS = ["rabbit_right", "rabbit_left", "rabbit_down"]
 
-onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
-onready var game: Game = get_parent().get_parent()
+@onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
+@onready var game: Game = get_parent().get_parent()
 
 func _ready():
 	get_node("/root/Game/LeftMask").clone_obj(self)
-	var init_x = rand_range(0.1, 0.4) + (randi() % 2) * 0.5
+	var init_x = randf_range(0.1, 0.4) + (randi() % 2) * 0.5
 	position.x = lerp(min_x, max_x, init_x)
 
 func copy_state_to(new_obj):
-	for s in [[new_obj.get_node("Sprite") ,$Sprite],
-			  [new_obj.get_node("Sprite/Clone"), $Sprite/Clone]]:
+	for s in [[new_obj.get_node("Sprite2D") ,$Sprite2D],
+			  [new_obj.get_node("Sprite2D/Clone"), $Sprite2D/Clone]]:
 		s[0].flip_h = s[1].flip_h
 		s[0].flip_v = s[1].flip_v
 		s[0].offset = s[1].offset
@@ -88,7 +88,7 @@ func play_step_sound():
 		
 	can_play_step = false
 	$Steps.get_child(randi() % $Steps.get_child_count()).play()
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 	can_play_step = true
 
 func _physics_process(delta):
@@ -109,7 +109,7 @@ func _physics_process(delta):
 			
 			if current_action != "" and Input.is_action_pressed(current_action):
 				next_action = current_action
-			elif min_active_pulling_time >= delta and pulling:
+			elif min_active_pulling_time >= delta and is_pulling:
 				min_active_pulling_time -= delta
 				next_action = "rabbit_down"
 			else:
@@ -125,9 +125,9 @@ func _physics_process(delta):
 
 			current_action = next_action
 			
-			if pulling and current_action != "rabbit_down":
+			if is_pulling and current_action != "rabbit_down":
 				pulling_delay = after_pull_delay
-				pulling = false
+				is_pulling = false
 			else:
 				var dir: = 0
 				if current_action == "rabbit_right":
@@ -135,39 +135,39 @@ func _physics_process(delta):
 				if current_action == "rabbit_left":
 					dir -= 1
 					
-				if pulling:
-					$Sprite.play("pull")
-					$Sprite/Clone.play("pull")
+				if is_pulling:
+					$Sprite2D.play("pull")
+					$Sprite2D/Clone.play("pull")
 				elif dir != 0:
-					$Sprite.play("run")
-					$Sprite/Clone.play("run")
+					$Sprite2D.play("run")
+					$Sprite2D/Clone.play("run")
 				else:
-					$Sprite.play("idle")
-					$Sprite/Clone.play("idle")
+					$Sprite2D.play("idle")
+					$Sprite2D/Clone.play("idle")
 			
 				position.x += speed * delta * dir
 
 				if dir > 0:
-					$Sprite.flip_h = false
-					$Sprite/Clone.flip_h = false
+					$Sprite2D.flip_h = false
+					$Sprite2D/Clone.flip_h = false
 					play_step_sound()
 				elif dir < 0:
-					$Sprite.flip_h = true
-					$Sprite/Clone.flip_h = true
+					$Sprite2D.flip_h = true
+					$Sprite2D/Clone.flip_h = true
 					play_step_sound()
 				
 				if current_action == "rabbit_down":
-					var pulled_before = pulling
-					pulling = _pull_carrot(delta)
+					var pulled_before = is_pulling
+					is_pulling = _pull_carrot(delta)
 					
-					if not pulled_before and pulling:
+					if not pulled_before and is_pulling:
 						min_active_pulling_time = min_pull_time
 					
-					if pulled_before and not pulling:
+					if pulled_before and not is_pulling:
 						current_action = ""
 						pulling_delay = after_pull_delay
 				else:
-					pulling = false
+					is_pulling = false
 	
 	if global_position.x < min_x - 21:
 		global_position.x += (max_x - min_x)
@@ -180,13 +180,12 @@ func die_by_bomb():
 func die():
 	self.is_dead = true
 	$Die.play()
-	$Sprite.play("dead")
-	$Sprite/Clone.play("dead")
+	$Sprite2D.play("dead")
+	$Sprite2D/Clone.play("dead")
 	if game.splash:
-		yield(get_tree().create_timer(1.5), "timeout")
+		await get_tree().create_timer(1.5).timeout
 		pulled_bomb = false
 		is_dead = false
 		pulling_delay = 0.0
 	else:
 		game.farmer_wins()
-

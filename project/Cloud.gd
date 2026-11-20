@@ -1,9 +1,9 @@
-extends Sprite
+extends Sprite2D
 
-export var amplitude: = 40.0
+@export var amplitude: = 40.0
 
-onready var duration: = 60 * rand_range(0.9, 1.1)
-onready var t:float = rand_range(0, duration)
+@onready var duration: = 60 * randf_range(0.9, 1.1)
+@onready var t:float = randf_range(0, duration)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

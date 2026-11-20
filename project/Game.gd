@@ -4,10 +4,10 @@ class_name Game
 
 const TARGET_CARROTS: = 15
 
-export var splash: = false
+@export var splash: = false
 
-onready var farmer_counter = $GUI/farmer_counter
-onready var rabbit_counter = $GUI/rabbit_counter
+@onready var farmer_counter = $GUI/farmer_counter
+@onready var rabbit_counter = $GUI/rabbit_counter
 
 
 var collected_carrots := 0
@@ -33,9 +33,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("restart") or (ended and Input.is_action_just_pressed("ui_accept")):
 		get_tree().reload_current_scene()
 	elif Input.is_action_just_pressed("ui_accept") and splash:
-		get_tree().change_scene("res://Game.tscn")
+		get_tree().change_scene_to_file("res://Game.tscn")
 	elif Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene("res://Menu.tscn")
+		get_tree().change_scene_to_file("res://Menu.tscn")
 		
 	#print(Engine.get_frames_per_second())
 	

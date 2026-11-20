@@ -1,9 +1,9 @@
-extends Sprite
+extends Sprite2D
 
 const SPEED = 200
-var duration = rand_range(0.5, 0.1)
+var duration = randf_range(0.5, 0.1)
 
-var vel:= Vector2.RIGHT.rotated(rand_range(-PI,PI)) * rand_range(SPEED / 3, SPEED)
+var vel:= Vector2.RIGHT.rotated(randf_range(-PI,PI)) * randf_range(SPEED / 3, SPEED)
 
 func _physics_process(delta):
 	position += vel * delta

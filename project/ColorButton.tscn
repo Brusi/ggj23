@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ColorButton.gd" type="Script" id=1]
-[ext_resource path="res://assets/ui/button.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/button.png" type="Texture2D" id=2]
 [ext_resource path="res://Theme.tres" type="Theme" id=3]
 
 [node name="Button" type="TextureButton"]

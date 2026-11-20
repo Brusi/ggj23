@@ -1,6 +1,6 @@
 extends Node
 
-onready var enabled: = Settings.rabbit_ai
+@onready var enabled: = Settings.rabbit_ai
 
 const min_x: = 980
 const max_x: = 1920
@@ -56,7 +56,7 @@ func _ready():
 		return
 	recalc_target()
 	
-	yield(get_tree().create_timer(2.0), "timeout")
+	await get_tree().create_timer(2.0).timeout
 	if not is_instance_valid(self):
 		return
 	started = true
@@ -72,7 +72,7 @@ func _physics_process(delta):
 	var farmer_diff = get_diff(rabbit.global_position.x, farmer.global_position.x)
 	var target_diff: = get_diff(rabbit.global_position.x, target_x)
 	
-	var on_farmer_new: = abs(farmer_diff) < 20
+	var on_farmer_new:bool = abs(farmer_diff) < 20
 	on_farmer = on_farmer_new
 	
 	if abs(target_diff) > 10:

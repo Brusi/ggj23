@@ -1,74 +1,96 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=2]
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://b2i1c7cv468k0"]
 
-[ext_resource path="res://assets/farmer_stab.png" type="Texture" id=1]
-[ext_resource path="res://assets/farmaer_idle.png" type="Texture" id=2]
-[ext_resource path="res://assets/farmer_walk.png" type="Texture" id=3]
-[ext_resource path="res://assets/farmer_bomber.png" type="Texture" id=4]
+[ext_resource type="Texture2D" uid="uid://dkcgrkpc3c6on" path="res://assets/farmer_stab.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://36sfmk8m2smw" path="res://assets/farmaer_idle.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b0r6dmt4msuti" path="res://assets/farmer_walk.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dgo6mdir1668s" path="res://assets/farmer_bomber.png" id="4"]
 
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 168, 336 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 168, 336)
 
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 168, 0, 168, 336 )
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("2")
+region = Rect2(168, 0, 168, 336)
 
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 168, 336 )
+[sub_resource type="AtlasTexture" id="17"]
+atlas = ExtResource("4")
+region = Rect2(0, 0, 168, 336)
 
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 168, 0, 168, 336 )
+[sub_resource type="AtlasTexture" id="18"]
+atlas = ExtResource("4")
+region = Rect2(168, 0, 168, 336)
 
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 178, 899 )
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 178, 899)
 
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 178, 0, 178, 899 )
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("1")
+region = Rect2(178, 0, 178, 899)
 
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 168, 336 )
+[sub_resource type="AtlasTexture" id="15"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 168, 336)
 
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 168, 0, 168, 336 )
+[sub_resource type="AtlasTexture" id="16"]
+atlas = ExtResource("3")
+region = Rect2(168, 0, 168, 336)
 
 [resource]
-animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}],
 "loop": true,
-"name": "default",
+"name": &"default",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 17 ), SubResource( 17 ), SubResource( 17 ), SubResource( 18 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("17")
+}, {
+"duration": 1.0,
+"texture": SubResource("17")
+}, {
+"duration": 1.0,
+"texture": SubResource("17")
+}, {
+"duration": 1.0,
+"texture": SubResource("18")
+}],
 "loop": true,
-"name": "plant",
+"name": &"plant",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 13 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("13")
+}],
 "loop": true,
-"name": "stab_one",
+"name": &"stab_one",
 "speed": 1.0
 }, {
-"frames": [ SubResource( 14 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("14")
+}],
 "loop": true,
-"name": "stab_two",
+"name": &"stab_two",
 "speed": 1.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("15")
+}, {
+"duration": 1.0,
+"texture": SubResource("16")
+}],
 "loop": true,
-"name": "walk",
+"name": &"walk",
 "speed": 10.0
-} ]
+}]

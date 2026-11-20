@@ -1,59 +1,74 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=2]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://b37pq7xp2o14r"]
 
-[ext_resource path="res://assets/dead_rabbit.png" type="Texture" id=1]
-[ext_resource path="res://assets/rabbit_idle.png" type="Texture" id=2]
-[ext_resource path="res://assets/rabbit_run.png" type="Texture" id=3]
-[ext_resource path="res://assets/rabbit_take_carrot.png" type="Texture" id=4]
+[ext_resource type="Texture2D" uid="uid://bk044j24gajwk" path="res://assets/dead_rabbit.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://e1at5ytn1qr6" path="res://assets/rabbit_idle.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://chbadr3i8d3cf" path="res://assets/rabbit_run.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://blgplsnqlhq40" path="res://assets/rabbit_take_carrot.png" id="4"]
 
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 168, 168 )
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 168, 168)
 
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 168, 0, 168, 168 )
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("2")
+region = Rect2(168, 0, 168, 168)
 
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 168, 0, 168, 168 )
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("4")
+region = Rect2(168, 0, 168, 168)
 
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 168, 168, 168 )
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("4")
+region = Rect2(0, 168, 168, 168)
 
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 168, 168 )
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 168, 168)
 
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 168, 0, 168, 168 )
+[sub_resource type="AtlasTexture" id="12"]
+atlas = ExtResource("3")
+region = Rect2(168, 0, 168, 168)
 
 [resource]
-animations = [ {
-"frames": [ ExtResource( 1 ) ],
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
 "loop": true,
-"name": "dead",
+"name": &"dead",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}],
 "loop": true,
-"name": "idle",
+"name": &"idle",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("13")
+}, {
+"duration": 1.0,
+"texture": SubResource("14")
+}],
 "loop": true,
-"name": "pull",
+"name": &"pull",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 11 ), SubResource( 12 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}],
 "loop": true,
-"name": "run",
+"name": &"run",
 "speed": 10.0
-} ]
+}]

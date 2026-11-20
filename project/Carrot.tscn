@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/carrot.png" type="Texture" id=1]
+[ext_resource path="res://assets/carrot.png" type="Texture2D" id=1]
 [ext_resource path="res://Carrot.gd" type="Script" id=2]
 [ext_resource path="res://assets/sound/carrot_long.ogg" type="AudioStream" id=3]
 [ext_resource path="res://assets/sound/eat.ogg" type="AudioStream" id=4]
@@ -8,17 +8,17 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15, 28 )
 
-[sub_resource type="AudioStreamRandomPitch" id=2]
+[sub_resource type="AudioStreamRandomizer" id=2]
 audio_stream = ExtResource( 3 )
 random_pitch = 1.4
 
-[sub_resource type="AudioStreamRandomPitch" id=3]
+[sub_resource type="AudioStreamRandomizer" id=3]
 audio_stream = ExtResource( 4 )
 
 [node name="Carrot" type="Node2D" groups=["carrot"]]
 script = ExtResource( 2 )
 
-[node name="CarrotGraphics" type="Sprite" parent="."]
+[node name="CarrotGraphics" type="Sprite2D" parent="."]
 scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 1 )

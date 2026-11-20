@@ -1,236 +1,245 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=15 format=3 uid="uid://b2g732pnxqjje"]
 
-[ext_resource path="res://assets/bg.png" type="Texture" id=1]
-[ext_resource path="res://Rabbit.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Farmer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/bg-cover.png" type="Texture" id=4]
-[ext_resource path="res://Carrot.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Game.gd" type="Script" id=6]
-[ext_resource path="res://CarrotContainer.gd" type="Script" id=7]
-[ext_resource path="res://ScreenSplitter.gd" type="Script" id=8]
-[ext_resource path="res://assets/cloud1.png" type="Texture" id=9]
-[ext_resource path="res://UpperGround.gd" type="Script" id=10]
-[ext_resource path="res://assets/cloud2.png" type="Texture" id=11]
-[ext_resource path="res://Cloud.gd" type="Script" id=12]
-[ext_resource path="res://Theme.tres" type="Theme" id=13]
-[ext_resource path="res://assets/carrot_counter.png" type="Texture" id=14]
+[ext_resource type="Texture2D" uid="uid://c2hedmf848oxc" path="res://assets/bg.png" id="1"]
+[ext_resource type="PackedScene" path="res://Rabbit.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Farmer.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://mpuw7guf4cyq" path="res://assets/bg-cover.png" id="4"]
+[ext_resource type="PackedScene" path="res://Carrot.tscn" id="5"]
+[ext_resource type="Script" uid="uid://dlx512bknrtna" path="res://Game.gd" id="6"]
+[ext_resource type="Script" uid="uid://byj8qogyikyoa" path="res://CarrotContainer.gd" id="7"]
+[ext_resource type="Script" uid="uid://mkgnp2ogu3s5" path="res://ScreenSplitter.gd" id="8"]
+[ext_resource type="Texture2D" uid="uid://cpadpljuw4xbh" path="res://assets/cloud1.png" id="9"]
+[ext_resource type="Script" uid="uid://tn3nxmaed7aq" path="res://UpperGround.gd" id="10"]
+[ext_resource type="Texture2D" uid="uid://363fvsytlj4h" path="res://assets/cloud2.png" id="11"]
+[ext_resource type="Script" uid="uid://cgpcdcgm7ioye" path="res://Cloud.gd" id="12"]
+[ext_resource type="Theme" uid="uid://bvspgoyjxpktw" path="res://Theme.tres" id="13"]
+[ext_resource type="Texture2D" uid="uid://c0ns3ra55qf7t" path="res://assets/carrot_counter.png" id="14"]
 
 [node name="Game" type="Node2D" groups=["game"]]
-script = ExtResource( 6 )
+script = ExtResource("6")
 
-[node name="Bg" type="Sprite" parent="."]
-position = Vector2( 960, 540 )
-texture = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1")
 
 [node name="Clouds" type="Node2D" parent="."]
 
-[node name="Cloud2" type="Sprite" parent="Clouds"]
-position = Vector2( 628.5, 293 )
-texture = ExtResource( 11 )
-script = ExtResource( 12 )
+[node name="Cloud2" type="Sprite2D" parent="Clouds"]
+position = Vector2(628.5, 293)
+texture = ExtResource("11")
+script = ExtResource("12")
 
-[node name="Cloud1" type="Sprite" parent="Clouds"]
-position = Vector2( 263.5, 155 )
-texture = ExtResource( 9 )
-script = ExtResource( 12 )
+[node name="Cloud1" type="Sprite2D" parent="Clouds"]
+position = Vector2(263.5, 155)
+texture = ExtResource("9")
+script = ExtResource("12")
 
-[node name="Cloud3" type="Sprite" parent="Clouds"]
-position = Vector2( 1654.5, 228 )
-texture = ExtResource( 11 )
-script = ExtResource( 12 )
+[node name="Cloud3" type="Sprite2D" parent="Clouds"]
+position = Vector2(1654.5, 228)
+texture = ExtResource("11")
+script = ExtResource("12")
 
-[node name="Cloud4" type="Sprite" parent="Clouds"]
-position = Vector2( 1229.5, 133 )
-texture = ExtResource( 9 )
-script = ExtResource( 12 )
+[node name="Cloud4" type="Sprite2D" parent="Clouds"]
+position = Vector2(1229.5, 133)
+texture = ExtResource("9")
+script = ExtResource("12")
 
 [node name="RightMask" type="Control" parent="."]
-margin_left = 988.0
-margin_top = 2.0
-margin_right = 1935.0
-margin_bottom = 1082.0
-rect_clip_content = true
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 988.0
+offset_top = 2.0
+offset_right = 1935.0
+offset_bottom = 1082.0
 
-[node name="Rabbit" parent="RightMask" instance=ExtResource( 2 )]
-position = Vector2( 850, 630 )
+[node name="Rabbit" parent="RightMask" instance=ExtResource("2")]
+position = Vector2(850, 630)
 
-[node name="Farmer" parent="RightMask" instance=ExtResource( 3 )]
-position = Vector2( 17, 449.962 )
+[node name="Farmer" parent="RightMask" instance=ExtResource("3")]
+position = Vector2(17, 449.962)
 
 [node name="LeftMask" type="Control" parent="."]
-margin_left = 2.0
-margin_right = 932.0
-margin_bottom = 1080.0
-rect_clip_content = true
-script = ExtResource( 8 )
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_right = 932.0
+offset_bottom = 1080.0
+script = ExtResource("8")
 
 [node name="CarrotContainer" type="Node2D" parent="."]
-position = Vector2( 1056, -9 )
-script = ExtResource( 7 )
+position = Vector2(1056, -9)
+script = ExtResource("7")
 
-[node name="Carrot" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( -42, 550 )
+[node name="Carrot" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(-42, 550)
 
-[node name="Carrot2" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 4.34, 550 )
+[node name="Carrot2" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(4.34, 550)
 
-[node name="Carrot3" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 50.68, 550 )
+[node name="Carrot3" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(50.68, 550)
 
-[node name="Carrot4" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 97.02, 550 )
+[node name="Carrot4" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(97.02, 550)
 
-[node name="Carrot5" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 143.36, 550 )
+[node name="Carrot5" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(143.36, 550)
 
-[node name="Carrot6" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 189.7, 550 )
+[node name="Carrot6" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(189.7, 550)
 
-[node name="Carrot7" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 236.04, 550 )
+[node name="Carrot7" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(236.04, 550)
 
-[node name="Carrot8" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 282.38, 550 )
+[node name="Carrot8" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(282.38, 550)
 
-[node name="Carrot9" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 328.72, 550 )
+[node name="Carrot9" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(328.72, 550)
 
-[node name="Carrot10" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 375.06, 550 )
+[node name="Carrot10" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(375.06, 550)
 
-[node name="Carrot11" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 421.4, 550 )
+[node name="Carrot11" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(421.4, 550)
 
-[node name="Carrot12" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 467.74, 550 )
+[node name="Carrot12" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(467.74, 550)
 
-[node name="Carrot13" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 514.08, 550 )
+[node name="Carrot13" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(514.08, 550)
 
-[node name="Carrot14" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 560.42, 550 )
+[node name="Carrot14" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(560.42, 550)
 
-[node name="Carrot15" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 606.76, 550 )
+[node name="Carrot15" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(606.76, 550)
 
-[node name="Carrot16" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 653.1, 550 )
+[node name="Carrot16" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(653.1, 550)
 
-[node name="Carrot17" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 699.44, 550 )
+[node name="Carrot17" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(699.44, 550)
 
-[node name="Carrot18" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 745.78, 550 )
+[node name="Carrot18" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(745.78, 550)
 
-[node name="Carrot19" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 792.12, 550 )
+[node name="Carrot19" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(792.12, 550)
 
-[node name="Carrot20" parent="CarrotContainer" instance=ExtResource( 5 )]
-position = Vector2( 838.46, 550 )
+[node name="Carrot20" parent="CarrotContainer" instance=ExtResource("5")]
+position = Vector2(838.46, 550)
 
-[node name="UpperGround" type="Sprite" parent="."]
-position = Vector2( 466, 848 )
+[node name="UpperGround" type="Sprite2D" parent="."]
 z_index = 20
-texture = ExtResource( 4 )
-script = ExtResource( 10 )
+position = Vector2(466, 848)
+texture = ExtResource("4")
+script = ExtResource("10")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="counter_board" type="TextureRect" parent="GUI"]
-margin_left = 680.0
-margin_top = 8.0
-margin_right = 1192.0
-margin_bottom = 264.0
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 14 )
+offset_left = 680.0
+offset_top = 8.0
+offset_right = 1192.0
+offset_bottom = 264.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14")
 
 [node name="counter_board2" type="TextureRect" parent="GUI"]
-margin_left = 1660.0
-margin_top = 8.0
-margin_right = 2172.0
-margin_bottom = 264.0
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 14 )
+offset_left = 1660.0
+offset_top = 8.0
+offset_right = 2172.0
+offset_bottom = 264.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14")
 
 [node name="farmer_counter" type="Label" parent="GUI"]
-margin_left = 781.0
-margin_top = 33.0
-margin_right = 834.0
-margin_bottom = 107.0
-theme = ExtResource( 13 )
+offset_left = 781.0
+offset_top = 33.0
+offset_right = 834.0
+offset_bottom = 107.0
+theme = ExtResource("13")
 text = "15"
-align = 1
+horizontal_alignment = 1
 
 [node name="rabbit_counter" type="Label" parent="GUI"]
-margin_left = 1738.0
-margin_top = 39.0
-margin_right = 1884.0
-margin_bottom = 113.0
-rect_scale = Vector2( 0.8, 0.8 )
-theme = ExtResource( 13 )
+offset_left = 1738.0
+offset_top = 39.0
+offset_right = 1884.0
+offset_bottom = 113.0
+scale = Vector2(0.8, 0.8)
+theme = ExtResource("13")
 text = "0 / 15"
-align = 1
+horizontal_alignment = 1
 
 [node name="rabbit_wins" type="Control" parent="GUI"]
 visible = false
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Label" type="Label" parent="GUI/rabbit_wins"]
-margin_left = 1116.0
-margin_top = 237.0
-margin_right = 1796.0
-margin_bottom = 388.0
-theme = ExtResource( 13 )
+layout_mode = 0
+offset_left = 1116.0
+offset_top = 237.0
+offset_right = 1796.0
+offset_bottom = 388.0
+theme = ExtResource("13")
 text = "You Win!
 Press [SPACE] to Restart"
-align = 1
+horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="GUI/rabbit_wins"]
-margin_left = 146.0
-margin_top = 237.0
-margin_right = 826.0
-margin_bottom = 388.0
-theme = ExtResource( 13 )
+layout_mode = 0
+offset_left = 146.0
+offset_top = 237.0
+offset_right = 826.0
+offset_bottom = 388.0
+theme = ExtResource("13")
 text = "You Lose...
 Press [SPACE] to Restart"
-align = 1
+horizontal_alignment = 1
 
 [node name="farmer_wins" type="Control" parent="GUI"]
 visible = false
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Label" type="Label" parent="GUI/farmer_wins"]
-margin_left = 143.0
-margin_top = 237.0
-margin_right = 823.0
-margin_bottom = 388.0
-theme = ExtResource( 13 )
+layout_mode = 0
+offset_left = 143.0
+offset_top = 237.0
+offset_right = 823.0
+offset_bottom = 388.0
+theme = ExtResource("13")
 text = "You Win!
 Press [SPACE] to Restart"
-align = 1
+horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="GUI/farmer_wins"]
-margin_left = 1111.0
-margin_top = 237.0
-margin_right = 1791.0
-margin_bottom = 388.0
-theme = ExtResource( 13 )
+layout_mode = 0
+offset_left = 1111.0
+offset_top = 237.0
+offset_right = 1791.0
+offset_bottom = 388.0
+theme = ExtResource("13")
 text = "You Lose...
 Press [SPACE] to Restart"
-align = 1
+horizontal_alignment = 1
 
 [node name="RightCover" type="ColorRect" parent="GUI"]
 visible = false
-margin_left = 988.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-color = Color( 0.25098, 0.0980392, 0.0313726, 1 )
+offset_left = 988.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.25098, 0.0980392, 0.0313726, 1)
 
 [node name="LeftCover" type="ColorRect" parent="GUI"]
 visible = false
-margin_right = 933.0
-margin_bottom = 1080.0
-color = Color( 0.25098, 0.0980392, 0.0313726, 1 )
+offset_right = 933.0
+offset_bottom = 1080.0
+color = Color(0.25098, 0.0980392, 0.0313726, 1)
 
 [connection signal="pulling" from="RightMask/Rabbit" to="RightMask/Farmer" method="_on_Rabbit_pulling"]

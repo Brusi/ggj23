@@ -6,9 +6,9 @@ signal collected
 
 var attached := true
 var being_pulled_for = 0.0
-onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
-onready var rabbit: Rabbit = get_parent().get_parent().get_node("RightMask/Rabbit")
-onready var game: Game = get_parent().get_parent()
+@onready var shape: RectangleShape2D = get_node("Area2D/CollisionShape2D").shape
+@onready var rabbit: Rabbit = get_parent().get_parent().get_node("RightMask/Rabbit")
+@onready var game: Game = get_parent().get_parent()
 var out := 0.0
 var speed := 0.0
 var fade_out_delay := 0.0
@@ -56,7 +56,7 @@ func _physics_process(delta):
 		rotation += rot_speed * delta
 	elif alive:
 		$PullSound.stop()
-		if global_position.y + shape.extents.y < rabbit.global_position.y + rabbit.shape.extents.y:
+		if global_position.y + shape.size.y * 0.5 < rabbit.global_position.y + rabbit.shape.size.y * 0.5:
 			speed += 10
 			position.y += speed * delta
 		else:

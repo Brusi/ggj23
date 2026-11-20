@@ -3,9 +3,9 @@ extends Node2D
 signal exploded
 
 var t: = 1.0
-export var duration_sec = 20
+@export var duration_sec = 20
 
-onready var rabbit: Rabbit = get_parent().get_node("RightMask/Rabbit")
+@onready var rabbit: Rabbit = get_parent().get_node("RightMask/Rabbit")
 
 var alive: = true
 var falling: = false
@@ -30,19 +30,19 @@ func _process(delta):
 		$Decoy.visible = true
 		$Decoy.modulate.a = min(1.0, $Decoy.modulate.a + delta / 2)
 		if $Decoy.modulate.a >= 1.0:
-			$Sprite.modulate.a = min(1.0, $Sprite.modulate.a - delta * 5)
+			$Sprite2D.modulate.a = min(1.0, $Sprite2D.modulate.a - delta * 5)
 	
 	if falling:
 		if alive:
-			$Sprite.visible = alive
-			$Sprite.modulate.a = 1.0
+			$Sprite2D.visible = alive
+			$Sprite2D.modulate.a = 1.0
 			$Decoy.visible = true
 			$Decoy.modulate.a = max(0.0, $Decoy.modulate.a - delta * 5)
 		return
 
 	t -= delta / duration_sec
 	t = max(t, 0)
-	($Path2D/PathFollow2D as PathFollow2D).unit_offset = t
+	($Path2D/PathFollow2D as PathFollow2D).progress_ratio = t
 	if t <= 0:
 		explode()
 
@@ -52,14 +52,14 @@ func _physics_process(delta):
 		return
 		
 	if falling:
-		if position.y + 21 < rabbit.position.y + rabbit.shape.extents.y:
+		if position.y + 21 < rabbit.position.y + rabbit.shape.size.y * 0.5:
 			speed += 600 * delta
 			position.y += speed * delta
 		else:
 			rabbit.die_by_bomb()
 			explode()
 
-		var spark: = preload("res://Spark.tscn").instance()
+		var spark: = preload("res://Spark.tscn").instantiate()
 		spark.position = $Path2D/PathFollow2D.position
 		add_child(spark)
 
@@ -68,26 +68,26 @@ func explode():
 		return
 	alive = false
 	
-	var explosion: = preload("res://Explosion.tscn").instance()
+	var explosion: = preload("res://Explosion.tscn").instantiate()
 	explosion.play_sound = true
 	explosion.global_position = global_position
 	
-	var explosion2: = preload("res://Explosion.tscn").instance()
+	var explosion2: = preload("res://Explosion.tscn").instantiate()
 	explosion2.global_position = decoy.global_position
 	
 	get_parent().add_child(explosion)
 	get_parent().add_child(explosion2)
 	
 	$White.visible = true
-	$Sprite.visible = false
+	$Sprite2D.visible = false
 	
 	decoy.get_node("White").visible = true
-	decoy.get_node("Sprite").visible = false
+	decoy.get_node("Sprite2D").visible = false
 	
 func copy_state_to(dst):
-	(dst.get_node("Path2D/PathFollow2D") as PathFollow2D).unit_offset = t
+	(dst.get_node("Path2D/PathFollow2D") as PathFollow2D).progress_ratio = t
 	
-	var spark: = preload("res://Spark.tscn").instance()
+	var spark: = preload("res://Spark.tscn").instantiate()
 	spark.position = dst.get_node("Path2D/PathFollow2D").position
 	dst.add_child(spark)
 

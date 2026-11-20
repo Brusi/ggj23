@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/rabbit_step_3.ogg-71cb0eef7c8d5f3250a9c0fc9c7cbb0a.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dsga88ts35hqp"
+path="res://.godot/imported/rabbit_step_3.ogg-71cb0eef7c8d5f3250a9c0fc9c7cbb0a.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sound/rabbit_step_3.ogg"
-dest_files=[ "res://.import/rabbit_step_3.ogg-71cb0eef7c8d5f3250a9c0fc9c7cbb0a.oggstr" ]
+dest_files=["res://.godot/imported/rabbit_step_3.ogg-71cb0eef7c8d5f3250a9c0fc9c7cbb0a.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

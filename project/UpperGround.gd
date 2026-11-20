@@ -1,9 +1,9 @@
-extends Sprite
+extends Sprite2D
 
 
-onready var rabbit: Rabbit = get_parent().get_node("RightMask/Rabbit")
+@onready var rabbit: Rabbit = get_parent().get_node("RightMask/Rabbit")
 var current_fade_out_time := 0.0
-export var total_fade_out_time := 0.4
+@export var total_fade_out_time := 0.4
 
 # Declare member variables here. Examples:
 # var a = 2
